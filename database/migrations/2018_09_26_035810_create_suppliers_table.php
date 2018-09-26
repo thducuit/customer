@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTimestampLog extends Migration
+class CreateSuppliersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddTimestampLog extends Migration
      */
     public function up()
     {
-        Schema::table('log', function (Blueprint $table) {
-            //$table->timestamps();
+        Schema::create('suppliers', function (Blueprint $table) {
+            $table->increments('id');
+			$table->string('name');
+			$table->text('note');
+            $table->timestamps();
         });
     }
 
@@ -25,9 +28,6 @@ class AddTimestampLog extends Migration
      */
     public function down()
     {
-        Schema::table('log', function (Blueprint $table) {
-            //
-
-        });
+        Schema::dropIfExists('suppliers');
     }
 }

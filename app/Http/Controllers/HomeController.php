@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\ChartService;
 
 class HomeController extends Controller
 {
@@ -11,7 +12,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(ChartService $chart_service_ins)
     {
         $this->middleware('auth');
     }

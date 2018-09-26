@@ -74,6 +74,27 @@
                 </div>
             </div>
 
+            <div class="form-group{{ $errors->has('supplier') ? ' has-error' : '' }}">
+                <label for="supplier" class="col-md-4 control-label">Nhà cung cấp (*)</label>
+
+                <div class="col-md-6">
+                    <select id="supplier_id" class="form-control" name="supplier_id">
+                        <option value="0" selected>----</option>
+                        @foreach($suppliers as $sup)
+                            <option value="{{ $sup->id }}">{{ $sup->name }}</option>
+                        @endforeach
+                    </select>
+                    <input type="hidden" class="supplier_id" 
+                        value="{{ $customer ? $customer->supplier_id : old('supplier_id') }}">
+
+                    @if ($errors->has('supplier'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('supplier') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
             <div class="form-group">
                 <label class="col-md-4 control-label">Ngày tạo / Hết hạn (*)</label>
 

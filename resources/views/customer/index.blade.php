@@ -65,7 +65,8 @@
                         			<!-- <th>ID</th> -->
                                     <th>Thứ tự</th>
                         			<th>Dịch vụ</th>
-                        			<th>Khách hàng - Dự án</th>
+                        			<th>Đối tác</th>
+                                    <th>Nhà cung cấp</th>
                                     <th>Ngày tạo</th>
                         			<th>Hết hạn</th>
                                     <th>Trạng thái </th>
@@ -74,7 +75,7 @@
                                     <th></th>
                                     <th></th>
                                     <th></th>
-                                    <th></th>
+                                    <!-- <th></th> -->
                         		</tr>
                         	</thead>
                         	<tbody>
@@ -106,6 +107,7 @@
                                             <a href="{{ route('customer', ['expand' => 'open', 'id' => $cus->id, 'key' => $key, 'cat' => $cat, 'page' => $page, 'sort' => $sort, 'status' => $cus->status]) }}">{{ $cus->customer }}</a></strong> <br>
                                         <small>{{ $cus->services }}</small>
                                     </td>
+                                    <td>{{ $cus->supplier ? $cus->supplier->name : '' }}</td>
                                     <td>{{ date('d-m-Y', strtotime($cus->datecreated)) }}</td>
                                     <td>{{ date('d-m-Y', strtotime($cus->dateexpired)) }}</td>
                                     <td>
@@ -131,9 +133,9 @@
                                     <td>
                                         <a href="#" class="btn-extra" data-name='{{ $cus->customer }} - {{ $cus->services }}' data-id="{{ $cus->id }}">Gia hạn</a>
                                     </td>
-                                    <td>
+                                    <!--<td>
                                         <a href="#" class="btn-send-mail" data-name='{{ $cus->customer }} - {{ $cus->services }}' data-id="{{ $cus->id }}">Gửi mail</a>
-                                    </td>
+                                    </td>-->
                         		</tr>
                                 @endforeach
                         	</tbody>

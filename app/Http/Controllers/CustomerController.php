@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Management;
 use App\Category;
 use App\Template;
+use App\Supplier;
 use App\Helpers\Mail as MailHelper;
 use Illuminate\Support\Facades\Log;
 use Validator;
@@ -52,15 +53,15 @@ class CustomerController extends Controller
 
         $query = Management::whereIn('status', [0, 1, 2]);
         if(!empty($category)) {
-            $query = Management::where(['category_id' => $category]);
+            $query->where(['category_id' => $category]);
         }
 
         if(!empty($keyword)) {
-            $query = Management::where('customer', 'like', '%' . $keyword . '%');
+            $query->where('customer', 'like', '%' . $keyword . '%');
         }
 
         if(is_numeric($status) && $status != -1) {
-            $query = Management::where(['status' => $status]);
+            $query->where(['status' => $status]);
         }
 
         if(!empty($sort)) {
@@ -72,11 +73,12 @@ class CustomerController extends Controller
             }
         }else
         {
-                $query->orderBy('order', 'asc');
+            $query->orderBy('order', 'asc');
         }
         $customers = $query->paginate(15);
 
         $categories = Category::where(['status' => 1])->get();
+        $suppliers = Supplier::all();
         $templates = Template::where(['status' => Template::IN_USE])->get();
 
         $customer = null; 
@@ -89,6 +91,7 @@ class CustomerController extends Controller
         return view('customer.index', [
         	'customers' => $customers,
             'categories'=> $categories,
+            'suppliers' => $suppliers,
             'customer'=> $customer,
             'templates'=> $templates,
             'key'=> $keyword,
@@ -108,6 +111,7 @@ class CustomerController extends Controller
                 'customer' => 'required',
                 'services' => 'required',
                 'category_id' => 'required',
+                'supplier_id' => 'required',
                 'services' => 'required',
                 'datecreated' => 'required',
                 'dateexpired' => 'required',
@@ -143,6 +147,7 @@ class CustomerController extends Controller
             $customer->customer = $input['customer'];
             $customer->services = $input['services'];
             $customer->category_id = $input['category_id'];
+            $customer->supplier_id = $input['supplier_id'];
             $customer->datecreated = Carbon::createFromFormat('d-m-Y', $input['datecreated'])->toDateTimeString();;
             $customer->dateexpired = Carbon::createFromFormat('d-m-Y', $input['dateexpired'])->toDateTimeString();;
             $customer->price = $input['price'];

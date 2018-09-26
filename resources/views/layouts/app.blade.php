@@ -51,6 +51,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quản lý <span class="caret"></span>
                             <ul class="dropdown-menu">
                                 <li><a href="/quan-ly-dich-vu">Dịch vụ</a></li>
+                                <li><a href="/quan-ly-nha-cung-cap">Nhà cung cấp</a></li>
                                 <li><a href="/quan-ly-khach-hang">Khách hàng</a></li>
                                 <li><a href="/quan-ly-mau-email">Mẫu Email</a></li>
                             </ul>
@@ -133,11 +134,16 @@
     <!--<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.js"></script>
                             
-    <script src="/js/ckeditor/ckeditor.js"></script>     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+
+    <script src="/js/ckeditor/ckeditor.js"></script>
+
     <script type="text/javascript">
         CKEDITOR.replace( 'editor' );
     </script>   
     <script src="/js/tq/custom.js"></script>
+
+    <script src="/js/tq/chart.js"></script>
 
     <!-- <script>tinymce.init({ selector:'.editor' });</script> -->
     <!--<script>tinymce.init({

@@ -68,6 +68,7 @@ class SendEmails extends Command
                 }
                 $management->save();
 
+                //save customer log
                 \App\Customer::saveLog($management);
 
                 $mail_info = \App\Helpers\Mail::mail_content($template, $management, $status);

@@ -8,7 +8,11 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                   
+                    @include('home/chart1')
+                    @include('home/chart2')
+                    @include('home/chart3')
+
                 </div>
             </div>
         </div>

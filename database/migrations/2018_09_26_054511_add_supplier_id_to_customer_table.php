@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTimestampLog extends Migration
+class AddSupplierIdToCustomerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddTimestampLog extends Migration
      */
     public function up()
     {
-        Schema::table('log', function (Blueprint $table) {
-            //$table->timestamps();
-        });
+        // Schema::table('management', function (Blueprint $table) {
+        //     $table->integer('supplier_id');
+        // });
     }
 
     /**
@@ -25,9 +25,6 @@ class AddTimestampLog extends Migration
      */
     public function down()
     {
-        Schema::table('log', function (Blueprint $table) {
-            //
-
-        });
+        //
     }
 }
