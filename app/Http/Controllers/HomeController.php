@@ -7,6 +7,9 @@ use App\Services\ChartService;
 
 class HomeController extends Controller
 {
+
+    private $chart_service_ins;
+
     /**
      * Create a new controller instance.
      *
@@ -15,6 +18,7 @@ class HomeController extends Controller
     public function __construct(ChartService $chart_service_ins)
     {
         $this->middleware('auth');
+        $this->chart_service_ins = $chart_service_ins;
     }
 
     /**
@@ -24,11 +28,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
-    }
-
-    public function test()
-    {
-        return view('test');
+        return view('home', [
+            'chart1' => $this->chart_service_ins->getDataChartByCategory(),
+            'chart2' => $this->chart_service_ins->getDataChartBySupplier()
+        ]);
     }
 }

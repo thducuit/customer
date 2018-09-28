@@ -148,3 +148,7 @@
         </div>
     </div>
 </div>
+<!-- Scripts -->
+<script type="text/javascript">
+    CKEDITOR.replace( 'editor' );
+</script> 
