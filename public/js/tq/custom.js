@@ -80,6 +80,14 @@
 		$('.sort').on('change', function() {
 			$('.frm-sort').submit();
 		});
+
+		$('.chart_bg_color').ColorPicker({
+			'color': 'RGB'
+		});
+
+		$('.chart_bd_color').ColorPicker({
+			'color': 'RGB'
+		});
 		
 	});
 })(jQuery);

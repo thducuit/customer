@@ -50,7 +50,9 @@ class SupplierController extends Controller
         if($request->isMethod('post')) {
 
             $validator = Validator::make($request->all(), [
-                'name' => 'required'
+                'name' => 'required',
+                'chart_bg_color' => 'required',
+                'chart_bd_color' => 'required',
             ]);
 
             if ($validator->fails()) {
@@ -70,6 +72,8 @@ class SupplierController extends Controller
             }
             $supplier->name = $input['name'];
             $supplier->note = '';
+            $supplier->chart_bg_color = $input['chart_bg_color'];
+            $supplier->chart_bd_color = $input['chart_bd_color'];
             $supplier->save();
 
             Log::info('update supplier success: ' . $supplier->name);

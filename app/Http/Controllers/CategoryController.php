@@ -55,7 +55,9 @@ class CategoryController extends Controller
 
             $validator = Validator::make($request->all(), [
                 'title' => 'required',
-                'status' => 'required'
+                'status' => 'required',
+                'chart_bg_color' => 'required',
+                'chart_bd_color' => 'required',
             ]);
 
             if ($validator->fails()) {
@@ -76,6 +78,8 @@ class CategoryController extends Controller
             $category->title = $input['title'];
             $category->status = isset($input['status']) ? $input['status'] : 1;
             $category->order = 1;
+            $category->chart_bg_color = $input['chart_bg_color'];
+            $category->chart_bd_color = $input['chart_bd_color'];
             $category->save();
 
             //upload photo

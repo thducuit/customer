@@ -8,10 +8,8 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                   
-                    @include('home/chart1')
-                    @include('home/chart2')
-
+                    @include('home/chart1', ['categories' => $categories, 'chart1' => $chart1])
+                    @include('home/chart2', ['suppliers' => $suppliers, 'chart2' => $chart2])
                 </div>
             </div>
         </div>
