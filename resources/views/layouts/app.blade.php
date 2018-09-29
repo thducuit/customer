@@ -18,6 +18,14 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.css">
     <link rel="stylesheet" type="text/css" href="/js/colorpicker/css/colorpicker.css">
     
+    
+
+    <script>
+        window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>
+    </script>
+
     <!-- Scripts -->
     <script src="/js/app.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -27,14 +35,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
     <script src="/js/ckeditor/ckeditor.js"></script>
     <script src="/js/colorpicker/js/colorpicker.js"></script>
+    <script src="/js/jscolor.js"></script>
     <script src="/js/tq/custom.js"></script>
     <script src="/js/tq/chart.js"></script> 
-
-    <script>
-        window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
-    </script>
+    <!-- Scripts -->
+    <script type="text/javascript">
+        CKEDITOR.replace( 'editor' );
+    </script> 
+    
 </head>
 <body>
     <div id="app">
@@ -137,6 +145,6 @@
         </div>
         @yield('content')
     </div>
-
+    
 </body>
 </html>

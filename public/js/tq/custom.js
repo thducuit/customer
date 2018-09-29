@@ -81,12 +81,18 @@
 			$('.frm-sort').submit();
 		});
 
-		$('.chart_bg_color').ColorPicker({
-			'color': 'RGB'
+		$('#chart_bg_color').ColorPicker({
+			onSubmit: function(hsb, hex, rgb, el) {
+				$(el).val(rgb);
+				$(el).ColorPickerHide();
+			}
 		});
 
-		$('.chart_bd_color').ColorPicker({
-			'color': 'RGB'
+		$('#chart_bd_color').ColorPicker({
+			onSubmit: function(hsb, hex, rgb, el) {
+				$(el).val(rgb);
+				$(el).ColorPickerHide();
+			}
 		});
 		
 	});
