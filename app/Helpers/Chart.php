@@ -27,6 +27,11 @@ class Chart {
                 'type' => 'linear', 
                 'display' => false,
                 'id' => 'y-axis-' . $cat->id,
+                'ticks' => [
+                    'max' =>  50,
+                    'min' =>  0,
+                    'stepSize' => 5
+                ]
             ];
         }
 
@@ -71,6 +76,11 @@ class Chart {
                 'type' => 'linear', 
                 'display' => false,
                 'id' => 'y-axis-' . $sup->id,
+                'ticks' => [
+                    'max' =>  50,
+                    'min' =>  0,
+                    'stepSize' => 5
+                ]
             ];
         }
 

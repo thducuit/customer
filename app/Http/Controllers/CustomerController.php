@@ -158,9 +158,13 @@ class CustomerController extends Controller
             $customer->status = $input['status'];
             $customer->save();
 
-            Management::check_status($customer);
-
             Log::info('update customer success: ' . $customer->customer);
+
+            $status = Management::check_status($customer);
+            if($status == Management::STATUS_WARNING) {
+                \App\CustomerLog::saveLog($customer);
+                return redirect('/quan-ly-khach-hang')->with(['warning' => 'Cập nhật thành công! Dữ liệu của bạn vừa được ghi lại để thống kê']);
+            }
 
             return redirect('/quan-ly-khach-hang')->with(['success' => 'Cập nhật thành công']);
         }        

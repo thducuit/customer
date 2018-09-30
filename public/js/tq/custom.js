@@ -46,6 +46,7 @@
 
 		$('#status').val($('.status').val());
 		$('#category_id').val($('.category_id').val());
+		$('#supplier_id').val($('.supplier_id').val());
 		$('.filter-form input').on('change', function() {
 			$('.filter-form').submit();
 		});

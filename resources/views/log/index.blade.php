@@ -16,20 +16,26 @@
                     <table class="table table-bordered">
                     	<thead>
                     		<tr>
-                    			<th>ID</th>
-                    			<th>Loại</th>
-                    			<th>Nội dung</th>
+                                <th>ID</th>
+                    			<th>Tên khách hàng</th>
+                                <th>Dịch vụ</th>
+                    			<th>Nhà cung cấp</th>
                     			<th>Ngày</th>
+                                <th></th>
                     		</tr>
                     	</thead>
                     	<tbody>
                     		@foreach($logs as $log)
                     		<tr>
                     			<td>{{ $log->id }}</td>
-                    			<td class="log-{{ $log->type }}">{{ $log->type }}</td>
-                    			<td>{{ $log->content }}</td> 
+                                <td>{{ $log->customer ? sprintf("%s[%s]", $log->customer->customer, $log->customer->services) : ''  }}</td>
+                    			<td>{{ $log->category ? $log->category->title : '' }}</td> 
+                                <td>{{ $log->supplier ? $log->supplier->name :  '' }}</td>
                     			<td>
                                     {{ date('d-m-Y H:i:s', strtotime($log->created_at)) }}       
+                                </td>
+                                <td>
+                                    <a href="#" class="btn-delete" data-action="{{ url('/log/delete') }}" data-method="delete" data-id="{{ $log->id }}"><span class="glyphicon glyphicon-remove"></span></a>  
                                 </td>
                     		</tr>
                     		@endforeach

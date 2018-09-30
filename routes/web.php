@@ -43,5 +43,7 @@ Route::post('/template/cc', 'EmailTemplateController@cc');
 Route::post('/supplier/update', 'SupplierController@post');
 Route::post('/supplier/delete', 'SupplierController@delete');
 
+Route::post('/log/delete', 'LogController@delete');
+
 Route::get('/test', 'HomeController@test');
 

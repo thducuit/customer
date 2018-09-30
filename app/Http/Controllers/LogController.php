@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
 use App\EmailLog;
+use App\CustomerLog;
 use Carbon\Carbon;
 
 class LogController extends Controller
@@ -34,11 +35,24 @@ class LogController extends Controller
             $filler_date = Carbon::createFromFormat('d-m-Y', $filler_date)->format('Y-m-d');
         }
 
-    	$logs = EmailLog::whereDate('created_at', '=', $filler_date)->get();
+    	$logs = CustomerLog::whereDate('created_at', '=', $filler_date)->get();
         return view('log.index', [
         	'logs' => $logs,
         	'filler_date' => $filler_date
         ]);
+    }
+
+    public function delete(Request $request) {
+        if($request->ajax()) {
+            $input = $request->all();
+            $id = $input['id'];
+            if($id) {
+                $log = CustomerLog::where(['id' => $id])->first();
+                $log->delete();
+                return response(['success' => true]);
+            }
+            return response(['success' => false, 'message' => 'Không tìm thấy log']);
+        } 
     }
 
 }

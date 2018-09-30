@@ -35,5 +35,6 @@ class Management extends Model
     		$customer->status = Management::STATUS_RUNNING;
     	}
     	$customer->save();
+        return $customer->status;
     }
 }
