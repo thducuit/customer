@@ -50,6 +50,7 @@ Route::post('/log/delete', 'LogController@delete');
 Route::post('/mail/send', 'HomeController@mail');
 
 Route::post('/tasks/delete', 'MailTaskController@delete');
+Route::post('/tasks/refresh', 'MailTaskController@refresh');
 
 Route::get('/test', 'HomeController@test');
 

@@ -156,6 +156,7 @@ class CustomerController extends Controller
             $customer->phone = $input['phone'];
             $customer->note = $input['note'];
             $customer->status = $input['status'];
+            $customer->order = 1;
             $customer->save();
 
             Log::info('update customer success: ' . $customer->customer);

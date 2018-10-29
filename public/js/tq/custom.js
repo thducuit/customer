@@ -57,7 +57,7 @@
 		    }
 		});
 
-		$('.btn-delete').click(function(e) {
+		$('.btn-delete, .btn-refresh').click(function(e) {
 			e.preventDefault();
 			var _this = $(this);
 			if(confirm('Do u want to continue?')) {

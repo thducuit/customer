@@ -50,7 +50,7 @@ class SendMailTask extends Command
         $mail_task->save();
         
         if(!empty($mail_task->title)) {
-            $template = new Template;
+            $template = new \App\Template;
             $template->title = $mail_task->title;
             $template->content = $mail_task->content;
         }else {

@@ -47,4 +47,19 @@ class MailTaskController extends Controller
         } 
     }
 
+    public function refresh(Request $request) 
+    {
+        if($request->ajax()) {
+            $input = $request->all();
+            $id = $input['id'];
+            if($id) {
+                $supplier = MailTask::where(['id' => $id])->first();
+                $supplier->status = MailTask::STATUS_WAITING;
+                $supplier->save();
+                return response(['success' => true]);
+            }
+            return response(['success' => false, 'message' => 'Không tìm thấy task']);
+        } 
+    }
+
 }

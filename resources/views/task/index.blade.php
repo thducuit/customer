@@ -16,6 +16,7 @@
                                 <th>Tiêu đề</th>
                     			<th>Email</th>
                     			<th>Tình trạng</th>
+                                <th>Gửi lại</th>
                                 <th>Ngày gửi</th>
                                 <th></th>
                     		</tr>
@@ -46,6 +47,9 @@
                                 <td>{{ $email_task->title }}</td>
                                 <td>{{ $email_task->email }}</td>
                     			<td><span class = "label label-{{ $color }}">{{ $status }}</span></td> 
+                                <td>
+                                    <a href="#" class="btn-refresh" data-action="{{ url('/tasks/refresh') }}" data-method="refesh" data-id="{{ $email_task->id }}"><span class="glyphicon glyphicon-refresh"></span></a>
+                                </td>
                     			<td>
                                     {{ date('d-m-Y H:i:s', strtotime($email_task->created_at)) }}       
                                 </td>
