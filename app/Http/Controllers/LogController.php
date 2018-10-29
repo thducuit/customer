@@ -28,17 +28,19 @@ class LogController extends Controller
      */
     public function index(Request $request)
     {
-    	$filler_date = $request->get('filler_date');
-    	if(!$filler_date) {
-    		$filler_date = date('Y-m-d');
-    	}else {
-            $filler_date = Carbon::createFromFormat('d-m-Y', $filler_date)->format('Y-m-d');
-        }
+    	$filler_date_from = $request->get('filler_date_from');
+        $filler_date_to = $request->get('filler_date_to');
 
-    	$logs = CustomerLog::whereDate('created_at', '=', $filler_date)->get();
+        $filler_date_from = (!$filler_date_from) ? date('Y-m-d 00:00:00') : Carbon::createFromFormat('d-m-Y', $filler_date_from)->format('Y-m-d');
+        $filler_date_to = (!$filler_date_to) ? date('Y-m-d 23:59:59') : Carbon::createFromFormat('d-m-Y', $filler_date_to)->format('Y-m-d');
+
+    	$logs = CustomerLog::whereDate('created_at', '>', $filler_date_from)
+                                ->whereDate('created_at', '<', $filler_date_to)->get();
+
         return view('log.index', [
         	'logs' => $logs,
-        	'filler_date' => $filler_date
+        	'filler_date_from' => $filler_date_from,
+        	'filler_date_to' => $filler_date_to,
         ]);
     }
 

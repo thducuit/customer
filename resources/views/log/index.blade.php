@@ -10,7 +10,8 @@
                 <div class="panel-body">
                 	<div class="pull-right action-block">
                 		<form class="filter-form" method="get">
-                			<input type="text" name="filler_date"  class="form-control datepicker" value="{{ date('d-m-Y', strtotime($filler_date)) }}" />	
+                            <div class="col-md-6"><input type="text" name="filler_date_from"  class="form-control datepicker" value="{{ date('d-m-Y', strtotime($filler_date_from)) }}" placeholder="from" /></div>
+                            <div class="col-md-6"><input type="text" name="filler_date_to"  class="form-control datepicker" value="{{ date('d-m-Y', strtotime($filler_date_to)) }}" placeholder="to"/></div>	
                 		</form>
                     </div>
                     <table id="log-table" class="table table-striped table-bordered">
