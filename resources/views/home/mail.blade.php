@@ -56,6 +56,7 @@
 
                             <div class="col-md-6">
                                 <textarea class="form-control editor" id="editor" name="content">{{ old('content') }}</textarea>
+                                <small>Tag: {category} {datecreated} {dateexpired} {project} {customer} {contact} {price} {note} {email} {phone} {STATUS}</small>
                             </div>
                         </div>
 
