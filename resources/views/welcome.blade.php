@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    TQ Design Email System
+                    TQ Tecom Email System
                 </div>
             </div>
         </div>

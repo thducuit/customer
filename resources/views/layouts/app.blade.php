@@ -8,14 +8,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'TQ Design') }}</title>
+    <title>{{ config('app.name', 'TQ Tecom') }}</title>
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" type="text/css" href="/css/jquery.tagsinput.min.css">
     <link rel="stylesheet" type="text/css" href="/js/colorpicker/css/colorpicker.css">
     
     
@@ -28,20 +28,17 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js" type="text/javascript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.js"></script>                        
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+    <script src="/js/jquery-3.3.1.js"></script>
+    <script src="/js/bootstrap-datepicker.js"></script>
+    <script src="/js/bootbox.min.js" type="text/javascript"></script>
+    <script src="/js/jquery.tagsinput.min.js"></script>                        
+    <script src="/js/Chart.js"></script>
     <script src="/js/ckeditor/ckeditor.js"></script>
     <script src="/js/colorpicker/js/colorpicker.js"></script>
     <script src="/js/jscolor.js"></script>
     <script src="/js/tq/custom.js"></script>
     <script src="/js/tq/chart.js"></script> 
-    <!-- Scripts -->
-    <script type="text/javascript">
-        CKEDITOR.replace( 'editor' );
-    </script> 
+    
     
 </head>
 <body>
@@ -68,20 +65,23 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quản lý <span class="caret"></span>
-                            <ul class="dropdown-menu">
-                                <li><a href="/quan-ly-dich-vu">Dịch vụ</a></li>
-                                <li><a href="/quan-ly-nha-cung-cap">Nhà cung cấp</a></li>
-                                <li><a href="/quan-ly-khach-hang">Khách hàng</a></li>
+                            <a href="/gui-mail" >Gửi mail</a>
+                        </li>
+						<li>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quản lý<span class="caret"></span>
+                            <ul class="dropdown-menu">								
+                                <li><a href="/quan-ly-dich-vu">Danh mục các dịch vụ</a></li>
+                                <li><a href="/quan-ly-khach-hang">Danh sách khách hàng</a></li>
+                                <li><a href="/quan-ly-nha-cung-cap">Danh sách nhà cung cấp</a></li>
                                 <li><a href="/quan-ly-mau-email">Mẫu Email</a></li>
                             </ul>
-                        </li>
+						</li>
                         <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hệ thống <span class="caret"></span>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cấu hình <span class="caret"></span>
                             <ul class="dropdown-menu">
-                                <li><a href="/quan-ly-tasks">Các Email Task</a></li>
-                                <li><a href="/them-cc">Thêm Email CC</a></li>
-                                <li><a href="/quan-ly-logs">Logs</a></li>
+                                <li><a href="/them-cc">Thêm email cc</a></li>
+                                <li><a href="/quan-ly-logs">Nhật ký gửi email</a></li>
+                                <li><a href="/quan-ly-tasks">Tiến trình gửi email</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -154,3 +154,7 @@
     
 </body>
 </html>
+<!-- Scripts -->
+<script type="text/javascript">
+    CKEDITOR.replace( 'editor' );
+</script> 

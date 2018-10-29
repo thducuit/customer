@@ -1,0 +1,58 @@
+body {
+	font-size: 15px;
+}
+.bottom-bar {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 0;
+	background: #fff;
+	border-top: 1px solid #d3e0e9;
+	z-index: 10
+}
+
+.bottom-bar.active {
+	height: auto;
+}
+
+.panel-bottom-bar {
+	margin-top: 22px;
+}
+
+.btn-close-bottom-bar {
+	margin: 15px;
+}
+
+.action-block {
+	margin-bottom: 15px;
+}
+.navbar-right .dropdown-toggle{text-transform: capitalize;}
+
+.table-bordered tr th{text-align:center}
+.table-bordered tr td:nth-child(1),.table-bordered tr td:nth-child(4),.table-bordered tr td:nth-child(5),.table-bordered tr td:nth-child(6){text-align:center; vertical-align:middle}
+.table-bordered tr td:nth-child(2){vertical-align:middle;    font-size: 15px;}
+.table-bordered tr td:nth-child(3),.table-bordered tr td:nth-child(8){text-align:center;vertical-align:middle}
+	.table-bordered tr td:nth-child(3) img{display:inline;max-width: 50px;}
+
+.table-customer tr th{text-align:center; vertical-align:middle !important;    font-size: 15px;}
+.table-customer tr td:nth-child(3){vertical-align: middle;text-align: left;}
+	.table-customer tr td:nth-child(3) a{text-decoration:none !important;    font-size: 15px;}
+.table-customer tr td:nth-child(4),.table-customer tr td:nth-child(5){text-align:center; min-width:95px;   font-size: 14px;}
+.table-customer tr td:nth-child(7){font-size: 15px;    max-width: 280px;}
+.table-customer tr td:nth-child(8){font-size: 15px;}
+.table-customer tr td:nth-child(9),.table-customer tr td:nth-child(10){text-align:center; vertical-align:middle}
+.table-customer tr td:nth-child(11),.table-customer tr td:nth-child(12){text-align:center; vertical-align:middle;font-size: 15px;}
+
+.table-chart-category,.table-chart-supplier{margin-top:20px; background:rgb(233,235,245)}
+
+	.table-chart-category td,.table-chart-supplier td{text-align:center;border: 1px solid #fff !important; color:#000 !important}
+	.table-chart-category thead tr:nth-child(1) td,.table-chart-supplier thead tr:nth-child(1){font-weight:700}
+	tfoot tr td:nth-child(1){font-weight:700}
+
+@media (min-width: 1530px) {
+	.container {
+	    width: 100%;
+		padding: 10px 20px;
+	}
+}

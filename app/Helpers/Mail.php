@@ -67,7 +67,7 @@ class Mail {
         \Mail::send(['html' => 'mail'], $mail_info, function ($message) use ($mail_info, $config_email_cc)
         {
             $message->subject($mail_info['subject']);
-            $message->from('no-reply@tqdesign.vn', 'TQ Design');
+            $message->from('no-reply@tqdesign.vn', 'TQ Tecom');
             $message->to($mail_info['email']);
             if($mail_info['cc']) {
                 $message->cc( array_merge($mail_info['cc'], $config_email_cc) );
