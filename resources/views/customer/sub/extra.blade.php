@@ -9,11 +9,7 @@
                 <label class="col-md-4 control-label">Thời gian gia hạn</label>
 
                 <div class="col-md-2">
-                    <select class="form-control" name="period">
-                        @for($i=1; $i<=10; $i++)
-                        <option value="{{ $i }}">{{ $i }}</option>
-                        @endfor
-                    </select>
+                    <input type="text" name="period" class="form-control">
                 </div>
 
                 <div class="col-md-2">
