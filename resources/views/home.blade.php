@@ -18,9 +18,6 @@
 <script>
     var chartdata1 =  {!! json_encode($chart1) !!};
     var chartdata2 =  {!! json_encode($chart2) !!};
-
-    new TQ_Chart('chart-category', 'Expected Sales 2018', chartdata1);
-    new TQ_Chart('chart-supplier', 'Expected Cost 2018', chartdata2);
 </script>
 @endsection
 

@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="/css/bootstrap-datepicker.css">
     <link rel="stylesheet" type="text/css" href="/css/jquery.tagsinput.min.css">
     <link rel="stylesheet" type="text/css" href="/js/colorpicker/css/colorpicker.css">
-    
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     
 
     <script>
@@ -25,19 +25,6 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
-
-    <!-- Scripts -->
-    <script src="/js/app.js"></script>
-    <script src="/js/jquery-3.3.1.js"></script>
-    <script src="/js/bootstrap-datepicker.js"></script>
-    <script src="/js/bootbox.min.js" type="text/javascript"></script>
-    <script src="/js/jquery.tagsinput.min.js"></script>                        
-    <script src="/js/Chart.js"></script>
-    <script src="/js/ckeditor/ckeditor.js"></script>
-    <script src="/js/colorpicker/js/colorpicker.js"></script>
-    <script src="/js/jscolor.js"></script>
-    <script src="/js/tq/custom.js"></script>
-    <script src="/js/tq/chart.js"></script> 
     
     
 </head>
@@ -155,6 +142,26 @@
 </body>
 </html>
 <!-- Scripts -->
+<script src="/js/app.js"></script>
+<script src="/js/jquery-3.3.1.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="/js/bootbox.min.js" type="text/javascript"></script>
+<script src="/js/jquery.tagsinput.min.js"></script>                        
+<script src="/js/Chart.js"></script>
+<script src="/js/ckeditor/ckeditor.js"></script>
+<script src="/js/colorpicker/js/colorpicker.js"></script>
+<script src="/js/jscolor.js"></script>
+<script src="/js/tq/custom.js"></script>
+<script src="/js/tq/chart.js"></script> 
+
+<!-- Scripts -->
 <script type="text/javascript">
+
+    if(chartdata1 && chartdata2) {
+        new TQ_Chart('chart-category', 'Expected Sales 2018', chartdata1);
+        new TQ_Chart('chart-supplier', 'Expected Cost 2018', chartdata2);
+    }
+    
     CKEDITOR.replace( 'editor' );
 </script> 
