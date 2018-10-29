@@ -11,7 +11,7 @@
                     <div class="pull-right action-block">
                         <a href="/quan-ly-mau-email?expand=open" class="btn btn-info btn-add">Thêm mới</a>
                     </div>
-                    <table class="table table-bordered">
+                    <table id="template-table" class="table table-stripe table-bordered">
                     	<thead>
                     		<tr>
                     			<th>ID</th>

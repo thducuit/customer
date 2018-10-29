@@ -37,7 +37,7 @@ class SupplierController extends Controller
             $supplier = new Supplier;
         }
         
-    	$suppliers = Supplier::paginate(15);
+    	$suppliers = Supplier::get();
         return view('supplier.index', [
         	'suppliers' => $suppliers,
             'supplier' => $supplier,
@@ -81,7 +81,8 @@ class SupplierController extends Controller
         return redirect('/quan-ly-nha-cung-cap')->with(['success' => 'Cập nhật thành công']);
     }
 
-    public function delete(Request $request) {
+    public function delete(Request $request) 
+    {
         if($request->ajax()) {
             $input = $request->all();
             $id = $input['id'];

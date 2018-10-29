@@ -12,7 +12,7 @@
                         <a href="/quan-ly-dich-vu?expand=open" class="btn btn-info btn-add">Thêm mới</a>
                         <a href="#" class="btn btn-primary btn-send-mail">Gửi mail</a>
                     </div>
-                    <table class="table table-bordered">
+                    <table id="cat-table" class="table table-stripe table-bordered">
                     	<thead>
                     		<tr>
                     			<th>ID</th>
@@ -52,7 +52,7 @@
                     		@endforeach
                     	</tbody>
 
-                        {{ $categories->links() }}
+                        
                     </table>
                 </div>
             </div>

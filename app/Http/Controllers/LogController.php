@@ -42,7 +42,8 @@ class LogController extends Controller
         ]);
     }
 
-    public function delete(Request $request) {
+    public function delete(Request $request) 
+    {
         if($request->ajax()) {
             $input = $request->all();
             $id = $input['id'];

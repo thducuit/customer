@@ -33,4 +33,18 @@ class MailTaskController extends Controller
         ]);
     }
 
+    public function delete(Request $request) 
+    {
+        if($request->ajax()) {
+            $input = $request->all();
+            $id = $input['id'];
+            if($id) {
+                $supplier = MailTask::where(['id' => $id])->first();
+                $supplier->delete();
+                return response(['success' => true]);
+            }
+            return response(['success' => false, 'message' => 'Không tìm thấy task']);
+        } 
+    }
+
 }

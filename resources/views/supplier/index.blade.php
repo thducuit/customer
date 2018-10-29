@@ -11,7 +11,7 @@
                     <div class="pull-right action-block">
                         <a href="/quan-ly-nha-cung-cap?expand=open" class="btn btn-info btn-add">Thêm mới</a>
                     </div>
-                    <table class="table table-bordered">
+                    <table id="sup-table" class="table table-stripe table-bordered">
                     	<thead>
                     		<tr>
                     			<th>ID</th>
@@ -34,8 +34,6 @@
                     		</tr>
                     		@endforeach
                     	</tbody>
-
-                        {{ $suppliers->links() }}
                     </table>
                 </div>
             </div>

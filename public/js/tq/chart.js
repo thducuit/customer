@@ -1,5 +1,6 @@
 
 function TQ_Chart(elementID, title, chart_data) {
+    if(!chart_data || chart_data.length === 0) return;
     chart_data['yAxes'][0]['display'] = true;
     return new Chart(document.getElementById(elementID).getContext('2d'), {
         type: 'bar',

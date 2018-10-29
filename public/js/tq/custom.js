@@ -121,6 +121,13 @@
 				CKEDITOR.instances['editor'].setData('');
 			}
 		});
+
+		$('#log-table').DataTable();
+		$('#template-table').DataTable();
+		$('#task-table').DataTable();
+		$('#sup-table').DataTable();
+		$('#cat-table').DataTable();
+		$('#cus-table').DataTable();
 		
 	});
 })(jQuery);

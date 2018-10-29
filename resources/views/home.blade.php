@@ -16,8 +16,8 @@
     </div>
 </div>
 <script>
-    var chartdata1 =  {!! json_encode($chart1) !!};
-    var chartdata2 =  {!! json_encode($chart2) !!};
+    chartdata1 =  {!! json_encode($chart1) !!};
+    chartdata2 =  {!! json_encode($chart2) !!};
 </script>
 @endsection
 

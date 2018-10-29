@@ -18,9 +18,11 @@
     <link rel="stylesheet" type="text/css" href="/css/jquery.tagsinput.min.css">
     <link rel="stylesheet" type="text/css" href="/js/colorpicker/css/colorpicker.css">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
 
     <script>
+        var chartdata1 = [];
+        var chartdata2 = [];
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
@@ -146,6 +148,7 @@
 <script src="/js/jquery-3.3.1.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
 <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
 <script src="/js/jquery.tagsinput.min.js"></script>                        
 <script src="/js/Chart.js"></script>
@@ -154,14 +157,13 @@
 <script src="/js/jscolor.js"></script>
 <script src="/js/tq/custom.js"></script>
 <script src="/js/tq/chart.js"></script> 
-
 <!-- Scripts -->
 <script type="text/javascript">
 
-    if(chartdata1 && chartdata2) {
-        new TQ_Chart('chart-category', 'Expected Sales 2018', chartdata1);
-        new TQ_Chart('chart-supplier', 'Expected Cost 2018', chartdata2);
-    }
+    new TQ_Chart('chart-category', 'Expected Sales 2018', chartdata1);
+    new TQ_Chart('chart-supplier', 'Expected Cost 2018', chartdata2);
     
-    CKEDITOR.replace( 'editor' );
+    if($('#editor').hasClass('editor')) {
+        CKEDITOR.replace( 'editor' );
+    }
 </script> 

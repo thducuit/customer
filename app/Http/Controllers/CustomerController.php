@@ -75,7 +75,7 @@ class CustomerController extends Controller
         {
             $query->orderBy('order', 'asc');
         }
-        $customers = $query->paginate(15);
+        $customers = $query->get();
 
         $categories = Category::where(['status' => 1])->get();
         $suppliers = Supplier::all();

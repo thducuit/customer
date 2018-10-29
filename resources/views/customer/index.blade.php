@@ -56,7 +56,7 @@
                                 <span class="glyphicon glyphicon-refresh"></span>
                             </button>
                         </div>
-                        <table class="table table-bordered table-customer">
+                        <table id="cus-table" class="table table-bordered table-customer">
                             <col width="10">
                             <col width="100">
                             <col width="300">
@@ -66,7 +66,7 @@
                                     <th>Thứ tự</th>
                         			<th>Dịch vụ</th>
                         			<th>Đối tác</th>
-                                    <th>Nhà cung cấp</th>
+                                    <!--<th>Nhà cung cấp</th>-->
                                     <th>Ngày tạo</th>
                         			<th>Hết hạn</th>
                                     <th>Trạng thái </th>
@@ -107,7 +107,7 @@
                                             <a href="{{ route('customer', ['expand' => 'open', 'id' => $cus->id, 'key' => $key, 'cat' => $cat, 'page' => $page, 'sort' => $sort, 'status' => $cus->status]) }}">{{ $cus->customer }}</a></strong> <br>
                                         <small>{{ $cus->services }}</small>
                                     </td>
-                                    <td>{{ $cus->supplier ? $cus->supplier->name : '' }}</td>
+                                    <!--<td>{{ $cus->supplier ? $cus->supplier->name : '' }}</td>-->
                                     <td>{{ date('d-m-Y', strtotime($cus->datecreated)) }}</td>
                                     <td>{{ date('d-m-Y', strtotime($cus->dateexpired)) }}</td>
                                     <td>
@@ -141,20 +141,6 @@
                         	</tbody>
                         </table>
                     </form>
-                    <div>
-                        <div class="pull-left">
-                            {{ $customers->appends(['id' => $customer->id, 'key' => $key, 'cat' => $cat, 'sort' => $sort])->links() }}
-                        </div>
-                        <div class="pull-right">
-                            <form class="frm-sort" action="{{ route('customer', ['expand' => $expand, 'id' => $customer->id, 'key' => $key, 'cat' => $cat, 'sort' => $sort, 'status' => $status]) }}" method="get">
-                                <select class="form-control sort" name="sort" >
-                                    <option>-- --</option>
-                                    <option {{ $sort == 'ID' ? 'selected': '' }} value="ID">ID</option>
-                                    <option {{ $sort == 'category' ? 'selected': '' }} value="category">category</option>
-                                </select>
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

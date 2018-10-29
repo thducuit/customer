@@ -40,7 +40,7 @@ class CategoryController extends Controller
             $category = new Category;
         }
         
-    	$categories = Category::paginate(15);
+    	$categories = Category::get();
         return view('category.index', [
         	'categories' => $categories,
             'category' => $category,

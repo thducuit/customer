@@ -8,7 +8,7 @@
                 <div class="panel-heading">Email Task</div>
 
                 <div class="panel-body">
-                	<table class="table table-bordered">
+                	<table id="task-table" class="table table-stripe table-bordered">
                     	<thead>
                     		<tr>
                     			<th>ID</th>
@@ -16,7 +16,8 @@
                                 <th>Tiêu đề</th>
                     			<th>Email</th>
                     			<th>Tình trạng</th>
-                    			<th>Ngày gửi</th>
+                                <th>Ngày gửi</th>
+                                <th></th>
                     		</tr>
                     	</thead>
                     	<tbody>
@@ -47,6 +48,9 @@
                     			<td><span class = "label label-{{ $color }}">{{ $status }}</span></td> 
                     			<td>
                                     {{ date('d-m-Y H:i:s', strtotime($email_task->created_at)) }}       
+                                </td>
+                                <td>
+                                <a href="#" class="btn-delete" data-action="{{ url('/tasks/delete') }}" data-method="delete" data-id="{{ $email_task->id }}"><span class="glyphicon glyphicon-remove"></span></a>  
                                 </td>
                     		</tr>
                     		@endforeach

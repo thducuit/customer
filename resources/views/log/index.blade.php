@@ -13,7 +13,7 @@
                 			<input type="text" name="filler_date"  class="form-control datepicker" value="{{ date('d-m-Y', strtotime($filler_date)) }}" />	
                 		</form>
                     </div>
-                    <table class="table table-bordered">
+                    <table id="log-table" class="table table-striped table-bordered">
                     	<thead>
                     		<tr>
                                 <th>ID</th>
@@ -39,7 +39,7 @@
                                 </td>
                     		</tr>
                     		@endforeach
-                    	</tbody>
+                        </tbody>
                     </table>
                 </div>
             </div>
