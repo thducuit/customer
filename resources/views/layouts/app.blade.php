@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'TQ Tecom') }}</title>
+    
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
@@ -140,30 +141,36 @@
         </div>
         @yield('content')
     </div>
-    
+
+    <div class="tq-loader"></div>
+    <!-- Scripts -->
+    <script src="/js/app.js"></script>
+    <script src="/js/jquery-3.3.1.js"></script>
+    <script src="/js/bootstrap-datepicker.js"></script>
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    <script src="/js/bootbox.min.js" type="text/javascript"></script>
+    <script src="/js/jquery.tagsinput.min.js"></script>                        
+    <script src="/js/Chart.js"></script>
+    <script src="/js/ckeditor/ckeditor.js"></script>
+    <script src="/js/colorpicker/js/colorpicker.js"></script>
+    <script src="/js/jscolor.js"></script>
+    <script src="/js/tq/custom.js"></script>
+    <script src="/js/tq/chart.js"></script> 
+    <!-- Scripts -->
+    <script type="text/javascript">
+
+        new TQ_Chart('chart-category', 'Expected Sales 2018', chartdata1);
+        new TQ_Chart('chart-supplier', 'Expected Cost 2018', chartdata2);
+        
+        if($('#editor').hasClass('editor')) {
+            CKEDITOR.replace( 'editor' );
+        }
+
+        $(window).on("load" , function() {
+            $(".tq-loader").fadeOut("slow");
+        });
+    </script> 
 </body>
 </html>
-<!-- Scripts -->
-<script src="/js/app.js"></script>
-<script src="/js/jquery-3.3.1.js"></script>
-<script src="/js/bootstrap-datepicker.js"></script>
-<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="//cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
-<script src="/js/bootbox.min.js" type="text/javascript"></script>
-<script src="/js/jquery.tagsinput.min.js"></script>                        
-<script src="/js/Chart.js"></script>
-<script src="/js/ckeditor/ckeditor.js"></script>
-<script src="/js/colorpicker/js/colorpicker.js"></script>
-<script src="/js/jscolor.js"></script>
-<script src="/js/tq/custom.js"></script>
-<script src="/js/tq/chart.js"></script> 
-<!-- Scripts -->
-<script type="text/javascript">
 
-    new TQ_Chart('chart-category', 'Expected Sales 2018', chartdata1);
-    new TQ_Chart('chart-supplier', 'Expected Cost 2018', chartdata2);
-    
-    if($('#editor').hasClass('editor')) {
-        CKEDITOR.replace( 'editor' );
-    }
-</script> 

@@ -146,7 +146,7 @@
         </div>
     </div>
 </div>
-@endsection
+
 <div class="bottom-bar {{ $expand && $expand == 'open' ? 'active' : '' }}">
     <a href="#" class="btn btn-danger btn-close-bottom-bar pull-right">Đóng lại</a>
     <div class="controller">
@@ -161,3 +161,5 @@
         </div>
     </div>
 </div>
+
+@endsection
