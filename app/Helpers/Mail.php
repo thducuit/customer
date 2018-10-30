@@ -2,7 +2,8 @@
 namespace App\Helpers;
 
 class Mail {
-	public static function mail_content($template, $management, $slogan = '') {
+    public static function mail_content($template, $management, $slogan = '') 
+    {
         //Tính giá trị mới bằng giá trị cũ - 10%
         $price_vat='';
         $price=explode(",", $management->price);
@@ -12,7 +13,7 @@ class Mail {
         $price=intval($price_vat);
         $price_vat=$price+ceil(($price*10)/100);
         $price_vat= number_format($price_vat);
-
+        
         $management_datecreated=date("d/m/Y",strtotime($management->datecreated));
         $management_dateexpired=date("d/m/Y",strtotime($management->dateexpired));
         $management_type = $management->category ? $management->category->title : '';
@@ -49,10 +50,13 @@ class Mail {
         $re=str_replace("{phone}",$phone,$re);
         $re=str_replace("{STATUS}",$slogan,$re);
 
-        $emails=explode(',', $email);
-        $email_send=$emails[0];
-        unset($emails[0]);
-        $emails_cc=$emails;
+        $emails = $email ? explode(',', $email) : [];
+        $email_send =  '';
+        if(count($emails) > 0) {
+            $email_send = $emails[0];
+            unset($emails[0]);
+        }
+        $emails_cc = $emails;
         
         return [
             'email' => $email_send,
@@ -64,13 +68,14 @@ class Mail {
 
     public static function send_mail($mail_info, $config_email_cc = []) 
     {
-        \Mail::send(['html' => 'mail'], $mail_info, function ($message) use ($mail_info, $config_email_cc)
+        $mailcc = array_merge($mail_info['cc'], $config_email_cc);
+        \Mail::send(['html' => 'mail'], $mail_info, function ($message) use ($mail_info, $mailcc)
         {
             $message->subject($mail_info['subject']);
             $message->from('no-reply@tqdesign.vn', 'TQ Tecom');
-            $message->to($mail_info['email']);
-            if($mail_info['cc']) {
-                $message->cc( array_merge($mail_info['cc'], $config_email_cc) );
+            $message->to(trim($mail_info['email']));
+            if(count($mailcc)) {
+                $message->cc($mailcc);
             }
         });
     }

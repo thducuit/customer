@@ -76,7 +76,7 @@ class SendEmails extends Command
                     $config_email_cc = [];
                     $config_cc = \App\Config::where(['key' => 'cc'])->first();
                     if($config_cc && $config_cc->value) {
-                        $config_email_cc = explode(',', $config_cc->value);
+                        $config_email_cc = $config_cc->value ? explode(',', $config_cc->value) : [];
                     }
                     \App\Helpers\Mail::send_mail($mail_info, $config_email_cc);
                     Log::info('Email sent to: ' . $mail_info['email']);

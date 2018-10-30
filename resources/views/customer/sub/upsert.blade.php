@@ -100,11 +100,11 @@
 
                 <div class="col-md-3">
                     <input id="created" type="text" class="form-control datepicker" name="datecreated" 
-                    value="{{ $customer ? date('d-m-Y', strtotime($customer->datecreated)) : old('datecreated') ? old('datecreated') : date('d-m-Y') }}" required>
+                    value="{{ $customer ? date('d-m-Y', strtotime($customer->datecreated)) : old('datecreated') }}" required>
                 </div>
                 <div class="col-md-3">
                     <input id="expired" type="text" class="form-control datepicker" name="dateexpired" 
-                    value="{{ $customer ? date('d-m-Y', strtotime($customer->dateexpired)) : old('dateexpired') ? old('dateexpired') : date('d-m-Y', strtotime('+1 day')) }}" required>
+                    value="{{ $customer ? date('d-m-Y', strtotime($customer->dateexpired)) : old('dateexpired') }}" required>
                 </div>
             </div>
 

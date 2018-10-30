@@ -53,15 +53,15 @@ class SendMailTask extends Command
             $template = new \App\Template;
             $template->title = $mail_task->title;
             $template->content = $mail_task->content;
+            $template->save();
         }else {
             $template = \App\Template::where(['id' => $mail_task->template_id])->first(); 
         }
 
-        $cc = explode(',', $mail_task->cc);
-        $category_ids = explode(',', $mail_task->category_ids);
+        $cc = $mail_task->cc ? explode(',', $mail_task->cc) : [];
+        $category_ids = $mail_task->category_ids ? explode(',', $mail_task->category_ids) : [];
+        $emails = $mail_task->email ? explode(',', $mail_task->email) : [];
         $customers = \App\Management::whereIn('category_id', $category_ids)->get();
-
-        $emails = explode(',', $mail_task->email);
 
         foreach ($customers as $key => $customer) {
             $mail_info = \App\Helpers\Mail::mail_content($template, $customer);
