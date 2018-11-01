@@ -56,7 +56,7 @@ class SupplierController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return redirect('/quan-ly-nha-cung-cap')
+                return back()
                             ->withErrors($validator)
                             ->withInput();
             }

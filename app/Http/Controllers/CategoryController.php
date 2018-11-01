@@ -61,7 +61,7 @@ class CategoryController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return redirect('/quan-ly-dich-vu')
+                return back()
                             ->withErrors($validator)
                             ->withInput();
             }

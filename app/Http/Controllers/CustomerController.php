@@ -123,7 +123,7 @@ class CustomerController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return redirect('/quan-ly-khach-hang')
+                return back()
                             ->withErrors($validator)
                             ->withInput();
             }

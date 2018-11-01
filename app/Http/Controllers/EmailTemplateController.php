@@ -57,7 +57,7 @@ class EmailTemplateController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return redirect('/quan-ly-mau-email')
+                return back()
                             ->withErrors($validator)
                             ->withInput();
             }

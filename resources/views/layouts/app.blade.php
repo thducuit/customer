@@ -108,37 +108,7 @@
             </div>
         </nav>
 
-        <div class="col-sm-12">
-            @if ( session('success') )
-            <div class="alert alert-success">
-              {{ session('success') }}
-            </div>
-            @endif
-
-            @if ( session('error') )
-            <div class="alert alert-danger">
-              {{ session('error') }}
-            </div>
-            @endif
-
-            @if ( session('warning') )
-            <div class="alert alert-warning">
-              {{ session('warning') }}
-            </div>
-            @endif
-
-            @if ( session('info') )
-            <div class="alert alert-info">
-              {{ session('info') }}
-            </div>
-            @endif
-
-            @if ($errors->any())
-                @foreach ($errors->all() as $error)
-                    <div class="alert alert-danger">{{ $error }}</div>
-                @endforeach
-            @endif
-        </div>
+        
         @yield('content')
     </div>
 
@@ -149,12 +119,15 @@
     <script src="/js/bootstrap-datepicker.js"></script>
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    <script src="/js/tq/price-comma.js" type="text/javascript"></script>
+    <script src="/js/tq/date-vn.js" type="text/javascript"></script>
     <script src="/js/bootbox.min.js" type="text/javascript"></script>
     <script src="/js/jquery.tagsinput.min.js"></script>                        
     <script src="/js/Chart.js"></script>
     <script src="/js/ckeditor/ckeditor.js"></script>
     <script src="/js/colorpicker/js/colorpicker.js"></script>
     <script src="/js/jscolor.js"></script>
+    <script src="/js/bootstrap-notify.js"></script>
     <script src="/js/tq/custom.js"></script>
     <script src="/js/tq/chart.js"></script> 
     <!-- Scripts -->
@@ -170,7 +143,59 @@
         $(window).on("load" , function() {
             $(".tq-loader").fadeOut("slow");
         });
+
+        function notification($message, $type) {
+            $.notify({
+                // options
+                message: $message 
+            },{
+                // settings
+                type: $type,
+                animate: {
+                    enter: 'animated fadeInDown',
+                    exit: 'animated fadeOutUp'
+                },
+                delay: 8000,
+                timer: 1000,
+                placement: {
+                    from: "top",
+                    align: "center"
+                }
+            });
+        }
     </script> 
+
+    @if ( session('success') )
+    <script>
+        notification('{{ session('success') }}', 'success');
+    </script>
+    @endif
+
+    @if ( session('error') )
+    <script>
+        notification('{{ session('error') }}', 'danger');
+    </script>
+    @endif
+
+    @if ( session('warning') )
+    <script>
+        notification('{{ session('warning') }}', 'warning');
+    </script>
+    @endif
+
+    @if ( session('info') )
+    <script>
+        notification('{{ session('info') }}', 'info');
+    </script>
+    @endif
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <script>
+                notification('{{ $error }}', 'danger');
+            </script>
+        @endforeach
+    @endif
 </body>
 </html>
 

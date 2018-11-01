@@ -57,14 +57,14 @@
                             </button>
                         </div>
                         <table id="cus-table" class="table table-bordered table-customer">
-                            <col width="10">
-                            <col width="100">
+                            <col width="300">
+                            <col width="200">
+                            <col width="200">
+                            <col width="200">
                             <col width="300">
                         	<thead>
                         		<tr>
                         			<!-- <th>ID</th> -->
-                                    <th>Thứ tự</th>
-                        			<th>Dịch vụ</th>
                         			<th>Đối tác</th>
                                     <!--<th>Nhà cung cấp</th>-->
                                     <th>Ngày tạo</th>
@@ -72,6 +72,8 @@
                                     <th>Trạng thái </th>
                                     <th>Liên hệ</th>
                         			<th>Giá</th>
+                                    <th>Thứ tự</th>
+                        			<th>Dịch vụ</th>
                                     <th></th>
                                     <th></th>
                                     <th></th>
@@ -95,14 +97,7 @@
                                     }
                                 @endphp
                         		<tr>
-                        			<!-- <td>{{ $cus->id }}</td> -->
-                                    <td><input type="text" name="order[{{ $cus->id }}]" value="{{ $cus->order }}" class="form-control input-xs"></td>
-                        			<td>
-                                        @if( $cus->category && $cus->category->gallery)
-                                            <img width="30" src="{{ 'uploads/' . $cus->category->gallery }}" class="img-responsive">
-                                        @endif         
-                                    </td>
-                                    <td>
+                        			<!-- <td>{{ $cus->id }}</td> --><td>
                                         <strong>
                                             <a href="{{ route('customer', ['expand' => 'open', 'id' => $cus->id, 'key' => $key, 'cat' => $cat, 'page' => $page, 'sort' => $sort, 'status' => $cus->status]) }}">{{ $cus->customer }}</a></strong> <br>
                                         <small>{{ $cus->services }}</small>
@@ -123,7 +118,12 @@
                                         <a href="#">{{ $cus->email }} </a>
                                     </td>
                                     <td>{{ $cus->price }}</td>
-                                    
+                                    <td><input type="text" name="order[{{ $cus->id }}]" value="{{ $cus->order }}" style="width:45px" class="form-control input-xs"></td>
+                        			<td>
+                                        @if( $cus->category && $cus->category->gallery)
+                                            <img width="30" src="{{ 'uploads/' . $cus->category->gallery }}" class="img-responsive">
+                                        @endif         
+                                    </td>
                                     <td>
                                         <a href="{{ route('customer', ['expand' => 'open', 'id' => $cus->id, 'key' => $key, 'cat' => $cat, 'page' => $page, 'sort' => $sort, 'status' => $cus->status]) }}"><span class="glyphicon glyphicon-pencil"></span></a>
                                     </td>
