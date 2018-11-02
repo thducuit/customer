@@ -66,3 +66,7 @@ body {
 	z-index: 9999;
 	background: url("../images/pageLoader.gif") 50% 50% no-repeat #000;
 }
+
+.colorpicker {
+	z-index: 11
+}
