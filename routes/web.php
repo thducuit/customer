@@ -24,6 +24,7 @@ Route::get('/them-cc', 'EmailTemplateController@addCC');
 Route::get('/quan-ly-logs', 'LogController@index');
 Route::get('/quan-ly-tasks', 'MailTaskController@index');
 Route::get('/gui-mail', 'HomeController@mail');
+Route::get('/quan-ly-tai-khoan', 'UserController@index');
 
 Route::post('/category/update', 'CategoryController@post');
 Route::post('/category/delete', 'CategoryController@delete');
@@ -51,6 +52,8 @@ Route::post('/mail/send', 'HomeController@mail');
 
 Route::post('/tasks/delete', 'MailTaskController@delete');
 Route::post('/tasks/refresh', 'MailTaskController@refresh');
+
+Route::post('/user/delete', 'UserController@delete');
 
 Route::get('/test', 'HomeController@test');
 

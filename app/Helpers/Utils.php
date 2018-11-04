@@ -5,6 +5,7 @@ use Carbon\Carbon;
 class Utils {
 	public static function get_left_days($expired_day) 
 	{
+		$expired_day = date('d-m-Y', strtotime($expired_day));
 		$today = strtotime("now");
 		$expired_day = strtotime($expired_day . ' 23:00:00');
         $days = round( ($expired_day - $today)/60/60/24 );

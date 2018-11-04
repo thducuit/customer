@@ -72,6 +72,7 @@
                                 <li><a href="/them-cc">Thêm email cc</a></li>
                                 <li><a href="/quan-ly-logs">Nhật ký gửi email</a></li>
                                 <li><a href="/quan-ly-tasks">Tiến trình gửi email</a></li>
+                                <li><a href="/quan-ly-tai-khoan">Tài khoản</a></li>
                             </ul>
                         </li>
                     </ul>

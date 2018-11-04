@@ -28,7 +28,7 @@ class Chart {
                 'display' => false,
                 'id' => 'y-axis-' . $cat->id,
                 'ticks' => [
-                    'max' =>  30,
+                    // 'max' =>  30,
                     'min' =>  0,
                     'stepSize' => 5
                 ]
@@ -77,7 +77,7 @@ class Chart {
                 'display' => false,
                 'id' => 'y-axis-' . $sup->id,
                 'ticks' => [
-                    'max' =>  30,
+                    // 'max' =>  30,
                     'min' =>  0,
                     'stepSize' => 5
                 ]

@@ -40,7 +40,7 @@ class SendMailTask extends Command
     public function handle()
     {
         //
-        Log::info('Run cron send email task');
+        //Log::info('Run cron send email task');
 
         $mail_task = \App\MailTask::where(['status' => \App\MailTask::STATUS_WAITING])->first();
         if(empty($mail_task)) {
@@ -99,7 +99,7 @@ class SendMailTask extends Command
         $mail_task->status = \App\MailTask::STATUS_DONE;
         $mail_task->save();
 
-        Log::info('Finish check and send email task');
+        //Log::info('Finish check and send email task');
         return;
     }
 }
