@@ -9,7 +9,7 @@
 
                 <div class="col-md-6">
                     <input id="customer" type="text" class="form-control" name="customer" 
-                    value="{{ $customer ? $customer->customer : old('customer') }}" required autofocus>
+                    value="{{ old('customer') ? old('customer') : $customer->customer }}" required autofocus>
 
                     @if ($errors->has('customer'))
                         <span class="help-block">
@@ -24,7 +24,7 @@
 
                 <div class="col-md-6">
                     <input id="services" type="text" class="form-control" name="services" 
-                    value="{{ $customer ? $customer->services : old('services') }}" required >
+                    value="{{ old('services') ? old('services') : $customer->services }}" required >
 
                     @if ($errors->has('services'))
                         <span class="help-block">
@@ -43,7 +43,7 @@
                         <option value="1">Sắp hết hạn</option>
                         <option value="2">Đã hết hạn</option>
                     </select>
-                    <input type="hidden" class="status" value="{{ $customer ? $customer->status : old('status') }}">
+                    <input type="hidden" class="status" value="{{ old('status') || old('status') == 0 ? old('status') : ($customer->status) ? : 0 }}">
 
                     @if ($errors->has('status'))
                         <span class="help-block">
@@ -64,7 +64,7 @@
                         @endforeach
                     </select>
                     <input type="hidden" class="category_id" 
-                        value="{{ $customer ? $customer->category_id : old('category_id') }}">
+                        value="{{ old('category_id') ? old('category_id') : $customer->category_id }}">
 
                     @if ($errors->has('category'))
                         <span class="help-block">
@@ -85,7 +85,7 @@
                         @endforeach
                     </select>
                     <input type="hidden" class="supplier_id" 
-                        value="{{ $customer ? $customer->supplier_id : old('supplier_id') }}">
+                        value="{{ old('supplier_id') ? old('supplier_id') : $customer->supplier_id }}">
 
                     @if ($errors->has('supplier'))
                         <span class="help-block">
@@ -99,12 +99,18 @@
                 <label class="col-md-4 control-label">Ngày tạo / Hết hạn (*)</label>
 
                 <div class="col-md-3">
+                    @php
+                        $date_created = old('datecreated') ? old('datecreated') : ( $customer->datecreated ? date('d-m-Y', strtotime($customer->datecreated)) : date('d-m-Y') );
+                    @endphp
                     <input id="created" type="text" class="form-control datepicker" name="datecreated" 
-                    value="{{ $customer ? date('d-m-Y', strtotime($customer->datecreated)) : old('datecreated') }}" required>
+                    value="{{ $date_created }}" required>
                 </div>
                 <div class="col-md-3">
+                    @php
+                        $date_expired = old('dateexpired') ? old('dateexpired') : ( $customer->dateexpired ? date('d-m-Y', strtotime($customer->dateexpired)) : date('d-m-Y', strtotime('tomorrow')) );
+                    @endphp
                     <input id="expired" type="text" class="form-control datepicker" name="dateexpired" 
-                    value="{{ $customer ? date('d-m-Y', strtotime($customer->dateexpired)) : old('dateexpired') }}" required>
+                    value="{{ $date_expired }}" required>
                 </div>
             </div>
 
@@ -113,7 +119,7 @@
 
                 <div class="col-md-6">
                     <input id="price" type="text" class="form-control" name="price" 
-                    value="{{ $customer ? $customer->price : old('price') }}" required>
+                    value="{{ old('price') ? old('price') : $customer->price }}" required>
 
                     @if ($errors->has('price'))
                         <span class="help-block">
@@ -128,7 +134,7 @@
 
                 <div class="col-md-6">
                     <input id="contact" type="text" class="form-control" name="contact" 
-                    value="{{ $customer ? $customer->contact : old('contact') }}" required>
+                    value="{{ old('contact') ? old('contact') : $customer->contact }}" required>
 
                     @if ($errors->has('contact'))
                         <span class="help-block">
@@ -143,7 +149,7 @@
 
                 <div class="col-md-6">
                     <input id="email" type="text" class="form-control email_tag" name="email" 
-                    value="{{ $customer ? $customer->email : old('email') }}" >
+                    value="{{ old('email') ? old('email') : $customer->email }}" >
 
                     @if ($errors->has('email'))
                         <span class="help-block">
@@ -158,7 +164,7 @@
 
                 <div class="col-md-6">
                     <input id="phone" type="text" class="form-control" name="phone" 
-                    value="{{ $customer ? $customer->phone : old('phone') }}" required>
+                    value="{{ old('phone') ? old('phone') : $customer->phone }}" required>
                 </div>
             </div>
 
@@ -166,7 +172,7 @@
                 <label for="note" class="col-md-4 control-label">Ghi chú</label>
 
                 <div class="col-md-6">
-                    <textarea  id="note" type="file" class="form-control" name="note">{{ $customer ? $customer->note : old('note') }}</textarea>
+                    <textarea  id="note" type="file" class="form-control" name="note">{{ old('note') ? old('note') : $customer->note }}</textarea>
                 </div>
             </div>
 

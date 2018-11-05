@@ -58,7 +58,7 @@ class SupplierController extends Controller
             if ($validator->fails()) {
                 return back()
                             ->withErrors($validator)
-                            ->withInput();
+                            ->withInput($request->all());
             }
 
             $input = $request->all();

@@ -74,7 +74,7 @@
 
                                 <div class="col-md-6">
                                     <input id="title" type="text" class="form-control" name="title" 
-                                    value="{{ $template ? $template->title : old('title') }}" required autofocus>
+                                    value="{{ old('title') ? old('title') : $template->title }}" required autofocus>
 
                                     @if ($errors->has('title'))
                                         <span class="help-block">
@@ -92,7 +92,7 @@
                                         <option value="1">Đang sử dụng</option>
                                         <option value="0">Tạm dừng</option>
                                     </select>
-                                    <input type="hidden" class="status" value="{{ $template ? $template->status : old('status') }}">
+                                    <input type="hidden" class="status" value="{{ old('status') ? old('status') : $template->status }}">
 
                                     @if ($errors->has('status'))
                                         <span class="help-block">
@@ -106,7 +106,7 @@
                                 <label for="content" class="col-md-4 control-label">Nội dung</label>
 
                                 <div class="col-md-12">
-                                    <textarea class="form-control editor" id="editor" name="content">{{ $template ? $template->content : old('content') }}</textarea>
+                                    <textarea class="form-control editor" id="editor" name="content">{{ old('content') ? old('content') : $template->content }}</textarea>
                                     <small>Tag: {category} {datecreated} {dateexpired} {project} {customer} {contact} {price} {note} {email} {phone} {STATUS}</small>
                                 </div>
                             </div>

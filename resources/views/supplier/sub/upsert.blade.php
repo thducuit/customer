@@ -9,7 +9,7 @@
 
                 <div class="col-md-6">
                     <input id="name" type="text" class="form-control" name="name" 
-                    value="{{ $supplier ? $supplier->name : old('name') }}" required autofocus>
+                    value="{{ old('name') ? old('name') : $supplier->name }}" required autofocus>
 
                     @if ($errors->has('name'))
                         <span class="help-block">
@@ -23,7 +23,7 @@
                 <label for="chart_bg_color" class="col-md-4 control-label">Màu nền chart</label>
 
                 <div class="col-md-6">
-                    <input type="text" name="chart_bg_color" id="chart_bg_color" class="chart_bg_color jscolor {hash:true} form-control" value="{{ $supplier ? $supplier->chart_bg_color : old('chart_bg_color') }}">
+                    <input type="text" name="chart_bg_color" id="chart_bg_color" class="chart_bg_color jscolor {hash:true} form-control" value="{{ old('chart_bg_color') ? old('chart_bg_color') : $supplier->chart_bg_color }}">
 
                     @if ($errors->has('chart_bg_color'))
                         <span class="help-block">
@@ -37,7 +37,7 @@
                 <label for="chart_bd_color" class="col-md-4 control-label">Màu viền chart</label>
 
                 <div class="col-md-6">
-                    <input type="text" name="chart_bd_color" id="chart_bd_color" class="chart_bd_color jscolor {hash:true} form-control" value="{{ $supplier ? $supplier->chart_bd_color : old('chart_bd_color') }}">    
+                    <input type="text" name="chart_bd_color" id="chart_bd_color" class="chart_bd_color jscolor {hash:true} form-control" value="{{ old('chart_bd_color') ? old('chart_bd_color') : $supplier->chart_bd_color }}">    
                     
                     @if ($errors->has('chart_bd_color'))
                         <span class="help-block">

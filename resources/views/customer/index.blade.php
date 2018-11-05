@@ -99,7 +99,7 @@
                                 @endphp
                         		<tr>
                                     <!-- <td>{{ $cus->id }}</td> -->
-                                    <td><input type="text" name="order[{{ $cus->id }}]" value="{{ $cus->order }}" style="width:45px" class="form-control input-xs"></td>
+                                    <td data-sort="{{ $cus->order }}"><input type="text" name="order[{{ $cus->id }}]" value="{{ $cus->order }}" style="width:45px" class="form-control input-xs"></td>
                         			<td>
                                         @if( $cus->category && $cus->category->gallery)
                                             <img width="30" src="{{ 'uploads/' . $cus->category->gallery }}" class="img-responsive">

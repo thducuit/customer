@@ -59,7 +59,7 @@ class EmailTemplateController extends Controller
             if ($validator->fails()) {
                 return back()
                             ->withErrors($validator)
-                            ->withInput();
+                            ->withInput($request->all());
             }
 
 
