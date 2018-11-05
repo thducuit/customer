@@ -54,6 +54,7 @@ Route::post('/tasks/delete', 'MailTaskController@delete');
 Route::post('/tasks/refresh', 'MailTaskController@refresh');
 
 Route::post('/user/delete', 'UserController@delete');
+Route::post('/user/change', 'UserController@change');
 
 Route::get('/test', 'HomeController@test');
 

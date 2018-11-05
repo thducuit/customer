@@ -129,14 +129,14 @@
 		$('#cat-table').DataTable();
 		$('#cus-table').DataTable({
 			"columns": [
+				{ "orderable": false },
+				{ "orderable": false },
 				null,
 				{ type: 'date-uk', targets: 1 },
 				{ type: 'date-uk', targets: 2 },
 				null,
 				null,
 				{ type: 'numeric-comma', targets: 5 },
-				{ "orderable": false },
-				{ "orderable": false },
 				{ "orderable": false },
 				{ "orderable": false },
 				{ "orderable": false },

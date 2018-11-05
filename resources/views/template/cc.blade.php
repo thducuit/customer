@@ -15,7 +15,7 @@
 	                    		<input type="text" name="email" class="form-control email_tag" value="{{ $config_cc->value }}">
 	                    	</div>
 	                    	<div>
-	                    		<button type="submit" type="button" class="btn btn-primary">Save</button>
+	                    		<button type="submit" type="button" class="btn btn-primary">Lưu lại</button>
 	                    	</div>
 	                    </form>
                     </div>

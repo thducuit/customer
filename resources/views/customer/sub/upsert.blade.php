@@ -173,7 +173,7 @@
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
                     <button type="submit" class="btn btn-primary">
-                        Save
+                        Lưu lại
                     </button>
                     <a href="#" style="margin:0" class="btn btn-danger btn-close-bottom-bar pull-right">Đóng lại</a>
                 </div>

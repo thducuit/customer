@@ -8,15 +8,13 @@
                 <div class="panel-heading">Tài khoản</div>
                 
                 <div class="panel-body">
-                	<div class="pull-right action-block">
-	                    <a href="/quan-ly-tai-khoan?expand=open" class="btn btn-info btn-add">Thêm mới</a>
-	                </div>
                     <table id="user-table" class="table table-stripe table-bordered">
                     	<thead>
                     		<tr>
                     			<th>ID</th>
                     			<th>Tên</th>
                                 <th>Email</th>
+                                <th></th>
                                 <th></th>
                     		</tr>
                     	</thead>
@@ -27,6 +25,9 @@
                     			<td>{{ $user->name }}</td>
                     			<td>
                                     {{ $user->email }}    
+                                </td>
+                                <td>
+                                    <a href="/quan-ly-tai-khoan?expand=open&id={{ $user->id }}">Đổi mật khẩu</a>
                                 </td>
                                 <td>
                                     <a href="#" class="btn-delete" data-action="{{ url('/user/delete') }}" data-method="delete" data-id="{{ $user->id }}"><span class="glyphicon glyphicon-remove"></span></a>  
