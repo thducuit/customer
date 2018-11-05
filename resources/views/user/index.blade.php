@@ -47,7 +47,7 @@
     <div class="controller">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                @include('user/sub/upsert', ['user' => $user])
+                @include('user/sub/upsert', ['choosen_user' => $choosen_user])
             </div>
         </div>
     </div>

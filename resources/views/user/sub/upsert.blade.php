@@ -4,13 +4,13 @@
             <form class="form-horizontal" role="form" method="POST" action="{{ url('user/change') }}">
                 {{ csrf_field() }}
 
-                <input type="hidden" name="id" value="{{ $user->id }}">
+                <input type="hidden" name="id" value="{{ $choosen_user->id }}">
 
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     <label for="name" class="col-md-4 control-label">Tên</label>
 
                     <div class="col-md-6">
-                        {{ $user->name }}
+                        {{ $choosen_user->name }}
                     </div>
                 </div>
 
@@ -18,12 +18,12 @@
                     <label for="email" class="col-md-4 control-label">E-Mail</label>
 
                     <div class="col-md-6">
-                        {{ $user->email }}
+                        {{ $choosen_user->email }}
                     </div>
                 </div>
 
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                    <label for="password" class="col-md-4 control-label">Mật khẩu</label>
+                    <label for="password" class="col-md-4 control-label">Mật khẩu mới</label>
 
                     <div class="col-md-6">
                         <input id="password" type="password" class="form-control" name="password" required>

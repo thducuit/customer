@@ -38,13 +38,49 @@ class UserController extends Controller
         
     	$users = User::get();
         return view('user.index', [
-        	'user' => $user,
+        	'choosen_user' => $user,
         	'users' => $users,
             'expand' => $isExpand
         ]);
     }
 
-    public function delete(Request $request) {
+    public function change(Request $request) 
+    {
+        if($request->isMethod('post')) {
+
+            $validator = Validator::make($request->all(), [
+                'password' => 'required|min:6|confirmed'
+            ]);
+
+            if ($validator->fails()) {
+                return back()
+                            ->withErrors($validator)
+                            ->withInput();
+            }
+
+            $input = $request->all();
+            $id = $input['id'];
+
+            $user = User::where(['id' => $id])->first();
+            
+            // if(empty($user)) {
+            //     return back()->withError('Mật khẩu cũ không đúng');
+            // }
+
+            // if($input['old_password'] == $input['password']) {
+            //     return back()->withError('Mật khẩu mới phải khác mật khẩu cũ');
+            // }
+
+            $user->password = bcrypt($input['password']);
+            $user->save();
+
+            Log::info('update password success: ' . $user->email);
+        }
+        return redirect('/quan-ly-tai-khoan')->with(['success' => 'Đổi mật khẩu thành công']);
+    }
+
+    public function delete(Request $request) 
+    {
         if($request->ajax()) {
             $input = $request->all();
             $id = $input['id'];
