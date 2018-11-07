@@ -37,6 +37,7 @@ class HomeController extends Controller
         return view('home', [
             'chart1' => $this->chart_service_ins->getDataChartByCategory(),
             'chart2' => $this->chart_service_ins->getDataChartBySupplier(),
+            'chart3' => $this->chart_service_ins->getDataServiceByCategory(),
             'categories' => $categories,
             'suppliers' => $suppliers
         ]);
