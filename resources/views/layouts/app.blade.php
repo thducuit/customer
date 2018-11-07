@@ -60,9 +60,10 @@
 						<li>
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quản lý<span class="caret"></span>
                             <ul class="dropdown-menu">								
-                                <li><a href="/quan-ly-dich-vu">Danh mục các dịch vụ</a></li>
+                                <li><a href="/quan-ly-dich-vu">Danh mục dịch vụ</a></li>
                                 <li><a href="/quan-ly-khach-hang">Danh sách khách hàng</a></li>
                                 <li><a href="/quan-ly-nha-cung-cap">Danh sách nhà cung cấp</a></li>
+                                <li><a href="/quan-ly-dich-vu-thue">Danh sách Dịch vụ đã thuê</a></li>
                                 <li><a href="/quan-ly-mau-email">Mẫu Email</a></li>
                             </ul>
 						</li>
@@ -70,7 +71,8 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cấu hình <span class="caret"></span>
                             <ul class="dropdown-menu">
                                 <li><a href="/them-cc">Thêm email cc</a></li>
-                                <li><a href="/quan-ly-logs">Nhật ký gửi email</a></li>
+                                <li><a href="/quan-ly-logs">Log thông báo khách hàng</a></li>
+                                <li><a href="/quan-ly-logs-dich-vu-thue">Log theo dõi dịch vụ thuê</a></li>
                                 <li><a href="/quan-ly-tasks">Tiến trình gửi email</a></li>
                                 <li><a href="/quan-ly-tai-khoan">Tài khoản</a></li>
                             </ul>

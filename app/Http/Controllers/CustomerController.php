@@ -141,7 +141,9 @@ class CustomerController extends Controller
             $datecreated = Carbon::createFromFormat('d-m-Y', $input['datecreated'])->timestamp;
             $dateexpired = Carbon::createFromFormat('d-m-Y', $input['dateexpired'])->timestamp;
             if( $dateexpired - $datecreated < 0 ) {
-                return redirect('/quan-ly-khach-hang')->with(['error' => 'Ngày hết hạn phải lớn hơn ngày tạo']);
+                return back()
+                        ->withInput($request->all())
+                        ->with(['error' => 'Ngày hết hạn phải lớn hơn ngày tạo']);
             }
 
             $customer->customer = $input['customer'];
@@ -168,7 +170,7 @@ class CustomerController extends Controller
             $status = Management::check_status($customer);
             if($status == Management::STATUS_WARNING) {
                 \App\CustomerLog::saveLog($customer);
-                return redirect('/quan-ly-khach-hang')->with(['warning' => 'Cập nhật thành công! Dữ liệu của bạn vừa được ghi lại để thống kê']);
+                return redirect('/quan-ly-khach-hang')->with(['warning' => 'Cập nhật thành công! Dữ liệu của bạn vừa được ghi lại vào `Log thông báo khách hàng` để thống kê']);
             }
 
             return redirect('/quan-ly-khach-hang')->with(['success' => 'Cập nhật thành công']);

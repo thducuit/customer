@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         //
         'App\Console\Commands\SendEmails',
+        'App\Console\Commands\CheckService',
         'App\Console\Commands\SendMailTask'
     ];
 
@@ -29,6 +30,10 @@ class Kernel extends ConsoleKernel
         $schedule->command('email:send')
                     ->timezone('Asia/Ho_Chi_Minh')
                     ->dailyAt("23:00");
+
+        $schedule->command('check:service')
+                    ->timezone('Asia/Ho_Chi_Minh')
+                    ->dailyAt("23:30");
 
         $schedule->command('mail:task')
                     ->everyMinute();

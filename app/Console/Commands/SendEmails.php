@@ -20,7 +20,7 @@ class SendEmails extends Command
      *
      * @var string
      */
-    protected $description = 'Send mail to clients';
+    protected $description = 'Send mail warning to clients';
 
     /**
      * Create a new command instance.

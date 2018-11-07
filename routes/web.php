@@ -22,9 +22,11 @@ Route::match(['get', 'post'], '/quan-ly-khach-hang', ['as' => 'customer', 'uses'
 Route::get('/quan-ly-mau-email', 'EmailTemplateController@index');
 Route::get('/them-cc', 'EmailTemplateController@addCC');
 Route::get('/quan-ly-logs', 'LogController@index');
+Route::get('/quan-ly-logs-dich-vu-thue', 'LogController@index2');
 Route::get('/quan-ly-tasks', 'MailTaskController@index');
 Route::get('/gui-mail', 'HomeController@mail');
 Route::get('/quan-ly-tai-khoan', 'UserController@index');
+Route::get('/quan-ly-dich-vu-thue', 'ServiceController@index');
 
 Route::post('/category/update', 'CategoryController@post');
 Route::post('/category/delete', 'CategoryController@delete');
@@ -47,6 +49,7 @@ Route::post('/supplier/update', 'SupplierController@post');
 Route::post('/supplier/delete', 'SupplierController@delete');
 
 Route::post('/log/delete', 'LogController@delete');
+Route::post('/log/delete2', 'LogController@delete2');
 
 Route::post('/mail/send', 'HomeController@mail');
 
@@ -55,6 +58,9 @@ Route::post('/tasks/refresh', 'MailTaskController@refresh');
 
 Route::post('/user/delete', 'UserController@delete');
 Route::post('/user/change', 'UserController@change');
+
+Route::post('/service/update', 'ServiceController@post');
+Route::post('/service/delete', 'ServiceController@delete');
 
 Route::get('/test', 'HomeController@test');
 

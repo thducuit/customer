@@ -127,6 +127,7 @@
 		$('#task-table').DataTable();
 		$('#sup-table').DataTable();
 		$('#cat-table').DataTable();
+		$('#ser-table').DataTable();
 		$('#cus-table').DataTable({
 			"columns": [
 				{ "orderable": false },
