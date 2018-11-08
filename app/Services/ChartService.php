@@ -13,11 +13,14 @@ class ChartService {
     public function getDataChartByCategory() {
         $year = date('Y');
         $sql = sprintf(
-            "select count(*) as val, category_id as cat, month
-                from `customer_log` as cl 
-                inner join `category` as c on cl.category_id = c.id 
-                where c.status = 1 and cl.status = 1 and cl.year = %d 
-                group by cl.month, cl.category_id" , $year
+            "
+            SELECT count(*) AS val, cl.`category_id` AS cat, cl.`month`
+            FROM `customer_log` AS cl
+            INNER JOIN `category` AS c ON cl.`category_id` = c.`id` 
+            INNER JOIN (SELECT MAX(`id`) AS id, `month`, `customer_id` FROM `customer_log` GROUP BY `month`, `year`, `customer_id`) AS clm ON clm.`id` = cl.`id`
+            INNER JOIN `management` AS m ON cl.`customer_id` = m.`id`
+            WHERE c.`status` = 1 AND m.`status` = 1 AND cl.`year` = %d 
+            GROUP BY cl.`month`, cl.`category_id`" , $year
         );
         
         $result = \DB::select(\DB::raw($sql));

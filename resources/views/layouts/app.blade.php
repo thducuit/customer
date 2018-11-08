@@ -24,6 +24,8 @@
     <script>
         var chartdata1 = [];
         var chartdata2 = [];
+        var labels1 = [];
+        var labels2 = [];
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
@@ -136,8 +138,8 @@
     <!-- Scripts -->
     <script type="text/javascript">
 
-        new TQ_Chart('chart-category', 'Expected Sales 2018', chartdata1);
-        new TQ_Chart('chart-supplier', 'Expected Cost 2018', chartdata2);
+        new TQ_Chart('chart-category', 'Expected Sales 2018', chartdata1, labels1);
+        new TQ_Chart('chart-supplier', 'Expected Cost 2018', chartdata2, labels2);
         
         if($('#editor').hasClass('editor')) {
             CKEDITOR.replace( 'editor' );

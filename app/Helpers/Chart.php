@@ -30,7 +30,7 @@ class Chart {
                 'ticks' => [
                     // 'max' =>  30,
                     'min' =>  0,
-                    'stepSize' => 2
+                    'stepSize' => 5
                 ]
             ];
         }
