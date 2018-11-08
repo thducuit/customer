@@ -18,8 +18,8 @@
                     	<thead>
                     		<tr>
                                 <th>ID</th>
-                    			<th>Tên khách hàng</th>
-                                <th>Dịch vụ</th>
+                    			<th>Tên dịch vụ</th>
+                                <th>Loại dịch vụ</th>
                     			<th>Nhà cung cấp</th>
                     			<th>Ngày</th>
                                 <th></th>
