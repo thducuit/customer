@@ -61,21 +61,22 @@ class Chart {
         $datasets = [];
         $yAxes = [];
         $suppliers = Supplier::all();
+        $categories = Category::all();
         $default_data = Constant::createDefautListByMonth();
-        foreach($suppliers as $sup) {
-            $datasets_temp[$sup->id] = [
-                'label'=> $sup->name,
+        foreach($categories as $cat) {
+            $datasets_temp[$cat->id] = [
+                'label'=> $cat->title,
                 'data' => $default_data,
-                'backgroundColor' => $sup->chart_bg_color,
-                'borderColor' => $sup->chart_bd_color,
+                'backgroundColor' => $cat->chart_bg_color,
+                'borderColor' => $cat->chart_bd_color,
                 'borderWidth' => 1,
-                'yAxisID'=> 'y-axis-' . $sup->id
+                'yAxisID'=> 'y-axis-' . $cat->id
             ];
 
             $yAxes[] = [
                 'type' => 'linear', 
                 'display' => false,
-                'id' => 'y-axis-' . $sup->id,
+                'id' => 'y-axis-' . $cat->id,
                 'ticks' => [
                     // 'max' =>  30,
                     'min' =>  0,
