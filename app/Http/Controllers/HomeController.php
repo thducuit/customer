@@ -34,6 +34,8 @@ class HomeController extends Controller
     {
         $categories = Category::where(['status' => 1])->get();
         $suppliers = Supplier::all();
+
+        
         return view('home', [
             'chart1' => $this->chart_service_ins->getDataChartByCategory(),
             'chart2' => $this->chart_service_ins->getDataChartBySupplier(),

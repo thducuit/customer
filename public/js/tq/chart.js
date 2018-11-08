@@ -1,11 +1,11 @@
 
-function TQ_Chart(elementID, title, chart_data) {
-    if(!chart_data || chart_data.length === 0) return;
+function TQ_Chart(elementID, title, chart_data, labels) {
+    if(!chart_data || chart_data.length === 0 || !labels) return;
     chart_data['yAxes'][0]['display'] = true;
     return new Chart(document.getElementById(elementID).getContext('2d'), {
         type: 'bar',
         data: {
-            labels: ["T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12"],
+            labels: labels,
             datasets: chart_data['datasets']
             
         },
