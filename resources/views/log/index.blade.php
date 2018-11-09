@@ -18,20 +18,40 @@
                     	<thead>
                     		<tr>
                                 <th>ID</th>
+                                <th>ID Khách hàng</th>
                     			<th>Tên khách hàng</th>
                                 <th>Dịch vụ</th>
                     			<th>Nhà cung cấp</th>
+                                <th>Trạng thái</th>
                     			<th>Ngày</th>
                                 <th></th>
                     		</tr>
                     	</thead>
                     	<tbody>
                     		@foreach($logs as $log)
+                            @php
+                                if($log->status== \App\Management::STATUS_RUNNING){
+                                    $color='success';
+                                    $status='Đang chạy';
+                                }else if($log->status== \App\Management::STATUS_WARNING){
+                                    $color='warning';
+                                    $status='Sắp hết hạn';
+                                }else if($log->status== \App\Management::STATUS_EXPIRED){
+                                    $color='danger';
+                                    $status='Đã hết hạn';
+                                }else{
+                                    $status=null;
+                                }
+                            @endphp
                     		<tr>
-                    			<td>{{ $log->id }}</td>
+                                <td>{{ $log->id }}</td>
+                    			<td>{{ $log->customer_id }}</td>
                                 <td>{{ $log->customer ? sprintf("%s[%s]", $log->customer->customer, $log->customer->services) : ''  }}</td>
                     			<td>{{ $log->category ? $log->category->title : '' }}</td> 
                                 <td>{{ $log->supplier ? $log->supplier->name :  '' }}</td>
+                                <td>
+                                    <span class = "label label-{{ $color }}">{{ $status }}</span>
+                                </td>
                     			<td>
                                     {{ date('d-m-Y H:i:s', strtotime($log->created_at)) }}       
                                 </td>
