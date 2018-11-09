@@ -15,12 +15,12 @@
         </div>
     </div>
 </div>
-<?php print_r($chart1); ?>
+<?php //echo '<pre>'; print_r($labels2); ?>
 <script>
     chartdata1 =  {!! json_encode($chart1) !!};
     chartdata2 =  {!! json_encode($chart2) !!};
     labels1 = ["T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12"];
-    labels2 = ["T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12"];
+    labels2 = {!! json_encode($labels2) !!};
 </script>
 @endsection
 

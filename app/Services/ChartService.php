@@ -14,13 +14,13 @@ class ChartService {
         $year = date('Y');
         $sql = sprintf(
             "
-            SELECT count(*) AS val, cl.`category_id` AS cat, cl.`month`
+            SELECT COUNT(*) AS val, cl.`category_id` AS cat, cl.`month`
             FROM `customer_log` AS cl
             INNER JOIN `category` AS c ON cl.`category_id` = c.`id` 
-            INNER JOIN (SELECT MAX(`id`) AS id, `month`, `customer_id` FROM `customer_log` GROUP BY `month`, `year`, `customer_id`) AS clm ON clm.`id` = cl.`id`
+            INNER JOIN (SELECT MAX(`id`) AS id, `month`, `customer_id` FROM `customer_log` WHERE `year` = %d GROUP BY `month`, `customer_id`) AS clm ON clm.`id` = cl.`id`
             INNER JOIN `management` AS m ON cl.`customer_id` = m.`id`
             WHERE c.`status` = 1 AND m.`status` = 1 AND cl.`year` = %d 
-            GROUP BY cl.`month`, cl.`category_id`" , $year
+            GROUP BY cl.`month`, cl.`category_id`" , $year, $year
         );
         
         $result = \DB::select(\DB::raw($sql));
@@ -30,11 +30,16 @@ class ChartService {
     public function getDataChartBySupplier() {
         $year = date('Y');
         $sql = sprintf(
-            "select count(*) as val, supplier_id as sup, month
-                from `service_logs` as sl 
-                inner join `suppliers` as s on sl.supplier_id = s.id 
-                where sl.status = 1 and sl.year = %d 
-                group by sl.month, sl.supplier_id" , $year
+            "
+            SELECT COUNT(*) AS val, sl.`supplier_id` AS sup, sl.`category_id` AS cat
+                FROM `service_logs` AS sl 
+                INNER JOIN `suppliers` AS s ON sl.`supplier_id` = s.`id`
+                INNER JOIN `category` AS c ON sl.`category_id` = c.`id`
+                INNER JOIN `services` AS se ON sl.`service_id` = se.`id`
+                INNER JOIN (SELECT MAX(`id`) AS id, `category_id`, `service_id` FROM `service_logs` WHERE `year` = %d GROUP BY `category_id`, `service_id`) AS slm ON slm.`id` = sl.`id`
+                WHERE c.`status` = 1 AND se.`status` = 1 AND sl.`year` = %d 
+                GROUP BY sl.`category_id`, sl.`supplier_id`
+            " , $year, $year
         );
         
         $result = \DB::select(\DB::raw($sql));
@@ -44,11 +49,15 @@ class ChartService {
     public function getDataServiceByCategory() {
         $year = date('Y');
         $sql = sprintf(
-            "select count(*) as val, category_id as cat, month
-                from `service_logs` as sl 
-                inner join `category` as c on sl.category_id = c.id 
-                where c.status = 1 and sl.status = 1 and sl.year = %d 
-                group by sl.month, sl.category_id" , $year
+            "
+            SELECT COUNT(*) AS val, sl.`category_id` AS cat, sl.`month`
+            FROM `service_logs` AS sl
+            INNER JOIN `suppliers` AS s ON sl.`supplier_id` = s.`id`
+            INNER JOIN `category` AS c ON sl.`category_id` = c.`id`
+            INNER JOIN `services` AS se ON sl.`service_id` = se.`id`
+            INNER JOIN (SELECT MAX(`id`) AS id, `month`, `service_id` FROM `service_logs` WHERE `year` = %d GROUP BY `month`, `service_id`) AS slm ON slm.`id` = sl.`id`
+            WHERE c.`status` = 1 and se.`status` = 1 and sl.`year` = %d 
+            GROUP BY sl.`month`, sl.`category_id`" , $year, $year
         );
         
         $result = \DB::select(\DB::raw($sql));

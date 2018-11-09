@@ -35,11 +35,16 @@ class HomeController extends Controller
         $categories = Category::where(['status' => 1])->get();
         $suppliers = Supplier::all();
 
+        $labels2 = [];
+        foreach($suppliers as $sup) {
+            $labels2[] = $sup->name;
+        }
         
         return view('home', [
             'chart1' => $this->chart_service_ins->getDataChartByCategory(),
             'chart2' => $this->chart_service_ins->getDataChartBySupplier(),
             'chart3' => $this->chart_service_ins->getDataServiceByCategory(),
+            'labels2' => $labels2,
             'categories' => $categories,
             'suppliers' => $suppliers
         ]);

@@ -35,8 +35,10 @@ class LogController extends Controller
         $filler_date_from = (!$filler_date_from) ? date('Y-m-d 00:00:00') : Carbon::createFromFormat('d-m-Y H:i:s', $filler_date_from . ' 00:00:00')->format('Y-m-d');
         $filler_date_to = (!$filler_date_to) ? date('Y-m-d 23:59:59') : Carbon::createFromFormat('d-m-Y H:i:s', $filler_date_to . ' 23:59:59')->format('Y-m-d');
         
-    	$logs = CustomerLog::whereDate('created_at', '>=', $filler_date_from)
-                                ->whereDate('created_at', '<=', $filler_date_to)->get();
+        $logs = CustomerLog::query()
+                            ->join(\DB::raw('(SELECT MAX(`id`) AS id, `month`, `customer_id`, `year` FROM `customer_log` GROUP BY `month`, `customer_id`, `year`) as clm'), 'clm.id',  '=', 'customer_log.id')
+                            ->whereDate('created_at', '>=', $filler_date_from)
+                            ->whereDate('created_at', '<=', $filler_date_to)->get();
 
         return view('log.index', [
         	'logs' => $logs,
@@ -72,8 +74,11 @@ class LogController extends Controller
         $filler_date_from = (!$filler_date_from) ? date('Y-m-d 00:00:00') : Carbon::createFromFormat('d-m-Y H:i:s', $filler_date_from . ' 00:00:00')->format('Y-m-d');
         $filler_date_to = (!$filler_date_to) ? date('Y-m-d 23:59:59') : Carbon::createFromFormat('d-m-Y H:i:s', $filler_date_to . ' 23:59:59')->format('Y-m-d');
         
-    	$logs = ServiceLog::whereDate('created_at', '>=', $filler_date_from)
-                                ->whereDate('created_at', '<=', $filler_date_to)->get();
+        $logs = ServiceLog::query()
+                            ->join(\DB::raw('(SELECT MAX(`id`) AS id, `month`, `service_id`, `year` FROM `service_logs` GROUP BY `month`, `service_id`, `year`) as slm'), 'slm.id',  '=', 'service_logs.id')
+                            ->whereDate('created_at', '>=', $filler_date_from)
+                            ->whereDate('created_at', '<=', $filler_date_to)
+                            ->get();
         
         return view('log.index2', [
         	'logs' => $logs,

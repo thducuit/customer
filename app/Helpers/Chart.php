@@ -7,7 +7,8 @@ use App\Constant as Constant;
 
 class Chart {
 
-    public function formatDataChartByCategory($data = []) {
+    public function formatDataChartByCategory($data = []) 
+    {
         $datasets_temp = [];
         $datasets = [];
         $yAxes = [];
@@ -56,13 +57,17 @@ class Chart {
         ];
     } 
 
-    public function formatDataChartBySupplier($data = []) {
+    public function formatDataChartBySupplier($data = []) 
+    {
         $datasets_temp = [];
         $datasets = [];
         $yAxes = [];
         $suppliers = Supplier::all();
         $categories = Category::all();
-        $default_data = Constant::createDefautListByMonth();
+        $default_data = [];
+        foreach($suppliers as $s) {
+            $default_data[$s->id] = $s->name;
+        }
         foreach($categories as $cat) {
             $datasets_temp[$cat->id] = [
                 'label'=> $cat->title,
@@ -87,7 +92,7 @@ class Chart {
 
         //add value from database to dataset[data]
         foreach ($data as $d) {
-            $datasets_temp[$d->sup]['data'][$d->month] = $d->val;
+            $datasets_temp[$d->cat]['data'][$d->sup] = $d->val;
         }
 
         //revert dataset
