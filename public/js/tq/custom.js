@@ -130,7 +130,7 @@
 		$('#ser-table').DataTable();
 		$('#cus-table').DataTable({
 			"columns": [
-				{ "orderable": false },
+				null,
 				{ "orderable": false },
 				null,
 				{ type: 'date-uk', targets: 1 },

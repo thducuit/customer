@@ -8,8 +8,8 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    @include('home/chart1', ['categories' => $categories, 'chart1' => $chart1])
-                    @include('home/chart2', ['suppliers' => $suppliers, 'chart2' => $chart2, 'chart3' => $chart3])
+                    @include('home/chart1', ['categories' => $categories, 'chart1' => $chart1, 'table1' => $table1])
+                    @include('home/chart2', ['suppliers' => $suppliers, 'chart2' => $chart2, 'table2' => $table2])
                 </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
 <script>
     chartdata1 =  {!! json_encode($chart1) !!};
     chartdata2 =  {!! json_encode($chart2) !!};
-    labels1 = ["T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12"];
+    labels1 = {!! json_encode($labels1) !!};
     labels2 = {!! json_encode($labels2) !!};
 </script>
 @endsection

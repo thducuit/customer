@@ -18,7 +18,7 @@
                 $total_sum = 0;
                 for($i = 0; $i < 12; $i++) $total_by_rows[$i] = 0;
             @endphp
-            @foreach($chart3['datasets'] as $dataset)
+            @foreach($table2 as $dataset)
             <tr>
                 @php
                     $total_by_col = 0; 
@@ -32,7 +32,7 @@
                 @endphp
                 <td>{{ $dataset['data'][$i] }}</td>
                 @endfor
-                <td>{{ $total_by_col }}</td>
+                <td><strong>{{ $total_by_col }}</strong></td>
             </tr>
             @php
                 $total_sum += $total_by_col;
@@ -43,7 +43,7 @@
             <tr>
                 <td><strong>Sum</strong></td>
                 @for($i = 0; $i<12; $i++)
-                <td>{{ $total_by_rows[$i] }}</td>
+                <td><strong>{{ $total_by_rows[$i] }}</strong></td>
                 @endfor
                 <td><strong>{{ $total_sum }}</strong></td>
             </tr>

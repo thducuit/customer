@@ -10,7 +10,8 @@ class ChartService {
         $this->chart_helper = new \App\Helpers\Chart;
     }
 
-    public function getDataChartByCategory() {
+    public function getDataChartByCategory() 
+    {
         $year = date('Y');
         $sql = sprintf(
             "
@@ -27,7 +28,8 @@ class ChartService {
         return $this->chart_helper->formatDataChartByCategory($result);
     }
 
-    public function getDataChartBySupplier() {
+    public function getDataChartBySupplier() 
+    {
         $year = date('Y');
         $sql = sprintf(
             "
@@ -46,7 +48,8 @@ class ChartService {
         return $this->chart_helper->formatDataChartBySupplier($result);
     }
 
-    public function getDataServiceByCategory() {
+    public function getDataServiceByCategory() 
+    {
         $year = date('Y');
         $sql = sprintf(
             "
@@ -59,6 +62,48 @@ class ChartService {
             WHERE c.`status` = 1 and se.`status` = 1 and sl.`year` = %d 
             GROUP BY sl.`month`, sl.`category_id`" , $year, $year
         );
+        
+        $result = \DB::select(\DB::raw($sql));
+        return $this->chart_helper->formatDataChartByCategory($result);
+    }
+
+    public function getExpiredCustomerByMonth()
+    {
+        $year = date('Y');
+        $sql = $sql = sprintf("
+            SELECT COUNT(*) AS val, cus.`category_id` AS cat, month(cus.`dateexpired`) as `month`
+            FROM `management` AS cus
+            WHERE cus.`status` < 2 and year(cus.`dateexpired`) = %d
+            GROUP BY cus.`category_id`, `month`
+            ", $year);
+        
+        $result = \DB::select(\DB::raw($sql));
+        return $this->chart_helper->formatDataChartByCategory($result);
+    }
+
+    public function getServiceByCategoryAndSupplier()
+    {
+        
+        $sql = "
+            SELECT COUNT(*) AS val, ser.`supplier_id` AS sup, ser.`category_id` AS cat
+            FROM `services` AS ser
+            WHERE ser.`status` < 2
+            GROUP BY ser.`supplier_id`, ser.`category_id`
+            ";
+        
+        $result = \DB::select(\DB::raw($sql));
+        return $this->chart_helper->formatDataChartBySupplier($result);
+    }
+
+    public function getExpiredServiceByMonth()
+    {
+        $year = date('Y');
+        $sql = sprintf("
+            SELECT COUNT(*) AS val, ser.`category_id` AS cat, month(ser.`dateexpired`) as `month`
+            FROM `services` AS ser
+            WHERE ser.`status` < 2 AND year(ser.`dateexpired`) = %d
+            GROUP BY ser.`category_id`, `month`
+            ", $year);
         
         $result = \DB::select(\DB::raw($sql));
         return $this->chart_helper->formatDataChartByCategory($result);

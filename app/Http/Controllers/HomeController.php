@@ -35,15 +35,22 @@ class HomeController extends Controller
         $categories = Category::where(['status' => 1])->get();
         $suppliers = Supplier::all();
 
+        $labels1 = ["T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12"];
         $labels2 = [];
         foreach($suppliers as $sup) {
             $labels2[] = $sup->name;
         }
         
+        $expiredCustomerByMonth =  $this->chart_service_ins->getExpiredCustomerByMonth();
+        $serviceByCategoryAndSupplier = $this->chart_service_ins->getServiceByCategoryAndSupplier();
+        $expiredServiceByMonth = $this->chart_service_ins->getExpiredServiceByMonth();
+
         return view('home', [
-            'chart1' => $this->chart_service_ins->getDataChartByCategory(),
-            'chart2' => $this->chart_service_ins->getDataChartBySupplier(),
-            'chart3' => $this->chart_service_ins->getDataServiceByCategory(),
+            'chart1' => $expiredCustomerByMonth,
+            'table1' => $expiredCustomerByMonth['datasets'],
+            'chart2' => $serviceByCategoryAndSupplier,
+            'table2' => $expiredServiceByMonth['datasets'],
+            'labels1' => $labels1,
             'labels2' => $labels2,
             'categories' => $categories,
             'suppliers' => $suppliers
