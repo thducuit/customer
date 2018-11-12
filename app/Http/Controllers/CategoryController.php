@@ -61,8 +61,7 @@ class CategoryController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return redirect()
-                            ->back()
+                return back()
                             ->withErrors($validator)
                             ->withInput($request->all());
             }
@@ -100,7 +99,8 @@ class CategoryController extends Controller
         return redirect('/quan-ly-dich-vu')->with(['success' => 'Cập nhật thành công']);
     }
 
-    public function delete(Request $request) {
+    public function delete(Request $request) 
+    {
         if($request->ajax()) {
             $input = $request->all();
             $id = $input['id'];

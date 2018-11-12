@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Management;
+use App\Customer;
 use App\Category;
 use App\Template;
 use App\Supplier;
@@ -45,13 +45,13 @@ class CustomerController extends Controller
 
         if($request->isMethod('post')) {
             foreach($orders as $idx => $value) {
-                $customer = Management::where(['id' => $idx])->first();
+                $customer = Customer::where(['id' => $idx])->first();
                 $customer->order = $value;
                 $customer->save();
             }
         }
 
-        $query = Management::whereIn('status', [0, 1, 2]);
+        $query = Customer::whereIn('status', [0, 1, 2]);
         if(!empty($category)) {
             $query->where(['category_id' => $category]);
         }
@@ -77,15 +77,15 @@ class CustomerController extends Controller
         }
         $customers = $query->get();
 
-        $categories = Category::where(['status' => 1])->get();
+        $categories = Category::where(['status' => Category::IN_USE])->get();
         $suppliers = Supplier::all();
         $templates = Template::where(['status' => Template::IN_USE])->get();
 
         $customer = null; 
         if($id) {
-            $customer = Management::where(['id' => $id])->first();
+            $customer = Customer::where(['id' => $id])->first();
         }else {
-            $customer = new Management;
+            $customer = new Customer;
         }
 
         return view('customer.index', [
@@ -133,9 +133,9 @@ class CustomerController extends Controller
 
             $customer = null;
             if($id) {
-                $customer = Management::where(['id' => $id])->first();
+                $customer = Customer::where(['id' => $id])->first();
             }else {
-                $customer = new Management;
+                $customer = new Customer;
             }
 
             $datecreated = Carbon::createFromFormat('d-m-Y', $input['datecreated'])->timestamp;
@@ -167,8 +167,9 @@ class CustomerController extends Controller
 
             Log::info('update customer success: ' . $customer->customer);
 
-            $status = Management::check_status($customer);
-            if($status == Management::STATUS_WARNING) {
+            //check status
+            $status = Customer::checkStatus($customer);
+            if($status == Customer::STATUS_WARNING) {
                 \App\CustomerLog::saveLog($customer);
                 return redirect('/quan-ly-khach-hang')->with(['warning' => 'Cập nhật thành công! Dữ liệu của bạn vừa được ghi lại vào `Log thông báo khách hàng` để thống kê']);
             }
@@ -183,7 +184,7 @@ class CustomerController extends Controller
             $input = $request->all();
             $id = $input['id'];
             if($id) {
-                $customer = Management::where(['id' => $id])->first();
+                $customer = Customer::where(['id' => $id])->first();
                 $customer->delete();
                 return response(['success' => true]);
             }
@@ -200,9 +201,9 @@ class CustomerController extends Controller
             $status = isset($input['status']) ? $input['status'] : 1;
 
             $template = Template::where(['id' => $template_id])->first();
-            $customer = Management::where(['id' => $id])->first();
+            $customer = Customer::where(['id' => $id])->first();
 
-            $mail_info = MailHelper::mail_content($template, $customer, $status);
+            $mail_info = MailHelper::setMailContent($template, $customer, $status);
             try {
                 $config_email_cc = [];
                 $config_cc = \App\Config::where(['key' => 'cc'])->first();
@@ -210,7 +211,7 @@ class CustomerController extends Controller
                     $config_email_cc = explode(',', $config_cc->value);
                 }
                 
-                MailHelper::send_mail($mail_info, $config_email_cc);
+                MailHelper::sendMail($mail_info, $config_email_cc);
                 Log::info('Email sent to: ' . $mail_info['email']);
                 \App\EmailLog::saveLog('sent', sprintf('Email [%s] sent to: %s', $status, $mail_info['email']) );
             }catch(Exception $e) {
@@ -230,17 +231,21 @@ class CustomerController extends Controller
             $period = $input['period'];
             $unit = $input['unit'];
 
-            $customer = Management::where(['id' => $id])->first();
+            $customer = Customer::where(['id' => $id])->first();
             $expired_day = $customer->dateexpired;
 
-            $new_date = \App\Helpers\Utils::extra_time($expired_day, $period, $unit);
+            $new_date = \App\Helpers\Utils::extraTime($expired_day, $period, $unit);
 
             $customer->dateexpired = $new_date;
             $customer->datecreated = date('Y-m-d');
 
             $customer->save();
 
-            Management::check_status($customer);
+            $status = Customer::checkStatus($customer);
+            if($status == Customer::STATUS_WARNING) {
+                \App\CustomerLog::saveLog($customer);
+                return redirect('/quan-ly-khach-hang')->with(['warning' => 'Cập nhật thành công! Dữ liệu của bạn vừa được ghi lại vào `Log thông báo khách hàng` để thống kê']);
+            }
             
         }
 

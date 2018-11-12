@@ -18,7 +18,7 @@ class ChartService {
             FROM `customer_log` AS cl
             INNER JOIN `category` AS c ON cl.`category_id` = c.`id` 
             INNER JOIN (SELECT MAX(`id`) AS id, `month`, `customer_id` FROM `customer_log` WHERE `year` = %d GROUP BY `month`, `customer_id`) AS clm ON clm.`id` = cl.`id`
-            INNER JOIN `management` AS m ON cl.`customer_id` = m.`id`
+            INNER JOIN `customer` AS m ON cl.`customer_id` = m.`id`
             WHERE c.`status` = 1 AND m.`status` = 1 AND cl.`year` = %d 
             GROUP BY cl.`month`, cl.`category_id`" , $year, $year
         );

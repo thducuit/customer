@@ -3,7 +3,8 @@ namespace App\Helpers;
 use Carbon\Carbon;
 
 class Utils {
-	public static function get_left_days($expired_day) 
+
+	public static function getLeftDays($expired_day) 
 	{
 		$expired_day = date('d-m-Y', strtotime($expired_day));
 		$today = strtotime("now");
@@ -12,7 +13,7 @@ class Utils {
         return $days;
 	}
 
-	public static function extra_time($expired_day, $period, $unit) 
+	public static function extraTime($expired_day, $period, $unit) 
 	{
 		$code = sprintf("+%s %s", $period, $unit);
 		$expired_day = strtotime($expired_day);

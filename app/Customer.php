@@ -5,9 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Helpers\Utils;
 
-class Management extends Model
+class customer extends Model
 {
-    protected $table = 'management';
+    protected $table = 'customer';
 
     const STATUS_RUNNING = 0;
     const STATUS_WARNING = 1;
@@ -21,18 +21,18 @@ class Management extends Model
 		return $this->belongsTo('App\Supplier', 'supplier_id');
 	}
 
-    public static function check_status($customer) {
-    	$days = Utils::get_left_days($customer->dateexpired);
+    public static function checkStatus($customer) {
+    	$days = Utils::getLeftDays($customer->dateexpired);
         
     	if($days<=30) {
     		//Sap het han
-    		$customer->status = Management::STATUS_WARNING;
+    		$customer->status = self::STATUS_WARNING;
     		if($days <= 0) { 
     			//het han
-    			$customer->status = Management::STATUS_EXPIRED;
+    			$customer->status = self::STATUS_EXPIRED;
             }
     	} else {
-    		$customer->status = Management::STATUS_RUNNING;
+    		$customer->status = self::STATUS_RUNNING;
     	}
     	$customer->save();
         return $customer->status;

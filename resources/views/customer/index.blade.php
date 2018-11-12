@@ -30,9 +30,9 @@
                                     <div class="form-group">
                                         <select name="status" class="form-control">
                                             <option {{ $status == -1 ? 'selected':'' }}>-- Trạng thái --</option>
-                                            <option {{ $status == \App\Management::STATUS_RUNNING ? 'selected':'' }} value="{{ \App\Management::STATUS_RUNNING }}">Đang chạy</option>
-                                            <option {{ $status == \App\Management::STATUS_WARNING ? 'selected':'' }} value="{{ \App\Management::STATUS_WARNING }}">Sắp hết hạn</option>
-                                            <option {{ $status == \App\Management::STATUS_EXPIRED ? 'selected':'' }} value="{{ \App\Management::STATUS_EXPIRED }}">Đã hết hạn</option>
+                                            <option {{ $status == \App\Customer::STATUS_RUNNING ? 'selected':'' }} value="{{ \App\Customer::STATUS_RUNNING }}">Đang chạy</option>
+                                            <option {{ $status == \App\Customer::STATUS_WARNING ? 'selected':'' }} value="{{ \App\Customer::STATUS_WARNING }}">Sắp hết hạn</option>
+                                            <option {{ $status == \App\Customer::STATUS_EXPIRED ? 'selected':'' }} value="{{ \App\Customer::STATUS_EXPIRED }}">Đã hết hạn</option>
                                         </select>
                                     </div>
                                 </div>
@@ -84,13 +84,13 @@
                         	<tbody>
                                 @foreach($customers as $cus)
                                 @php
-                                    if($cus->status== \App\Management::STATUS_RUNNING){
+                                    if($cus->status== \App\Customer::STATUS_RUNNING){
                                         $color='success';
                                         $status='Đang chạy';
-                                    }else if($cus->status== \App\Management::STATUS_WARNING){
+                                    }else if($cus->status== \App\Customer::STATUS_WARNING){
                                         $color='warning';
                                         $status='Sắp hết hạn';
-                                    }else if($cus->status== \App\Management::STATUS_EXPIRED){
+                                    }else if($cus->status== \App\Customer::STATUS_EXPIRED){
                                         $color='danger';
                                         $status='Đã hết hạn';
                                     }else{

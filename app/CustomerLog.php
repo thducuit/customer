@@ -10,7 +10,7 @@ class CustomerLog extends Model
     protected $table = 'customer_log';
 
     public function customer() {
-        return $this->belongsTo('App\Management', 'customer_id');
+        return $this->belongsTo('App\Customer', 'customer_id');
     }
 
     public function category() {

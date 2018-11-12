@@ -21,18 +21,18 @@ class Service extends Model
 		return $this->belongsTo('App\Supplier', 'supplier_id');
     }
 
-    public static function check_status($service) {
-    	$days = Utils::get_left_days($service->dateexpired);
+    public static function checkStatus($service) {
+    	$days = Utils::getLeftDays($service->dateexpired);
         
     	if($days<=30) {
     		//Sap het han
-    		$service->status = Service::STATUS_WARNING;
+    		$service->status = self::STATUS_WARNING;
     		if($days <= 0) { 
     			//het han
-    			$service->status = Service::STATUS_EXPIRED;
+    			$service->status = self::STATUS_EXPIRED;
             }
     	} else {
-    		$service->status = Service::STATUS_RUNNING;
+    		$service->status = self::STATUS_RUNNING;
     	}
     	$service->save();
         return $service->status;

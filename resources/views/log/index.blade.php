@@ -30,13 +30,13 @@
                     	<tbody>
                     		@foreach($logs as $log)
                             @php
-                                if($log->status== \App\Management::STATUS_RUNNING){
+                                if($log->status== \App\Customer::STATUS_RUNNING){
                                     $color='success';
                                     $status='Đang chạy';
-                                }else if($log->status== \App\Management::STATUS_WARNING){
+                                }else if($log->status== \App\Customer::STATUS_WARNING){
                                     $color='warning';
                                     $status='Sắp hết hạn';
-                                }else if($log->status== \App\Management::STATUS_EXPIRED){
+                                }else if($log->status== \App\Customer::STATUS_EXPIRED){
                                     $color='danger';
                                     $status='Đã hết hạn';
                                 }else{

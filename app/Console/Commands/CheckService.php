@@ -49,7 +49,7 @@ class CheckService extends Command
             }
 
             //get left days
-            $days = \App\Helpers\Utils::get_left_days($expired_day);
+            $days = \App\Helpers\Utils::getLeftDays($expired_day);
 
             $status = '';
             if($days==3||$days==5||$days==7||$days==30||$days==0) {

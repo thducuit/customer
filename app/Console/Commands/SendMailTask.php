@@ -39,9 +39,6 @@ class SendMailTask extends Command
      */
     public function handle()
     {
-        //
-        //Log::info('Run cron send email task');
-
         $mail_task = \App\MailTask::where(['status' => \App\MailTask::STATUS_WAITING])->first();
         if(empty($mail_task)) {
             return;
@@ -61,12 +58,12 @@ class SendMailTask extends Command
         $cc = $mail_task->cc ? explode(',', $mail_task->cc) : [];
         $category_ids = $mail_task->category_ids ? explode(',', $mail_task->category_ids) : [];
         $emails = $mail_task->email ? explode(',', $mail_task->email) : [];
-        $customers = \App\Management::whereIn('category_id', $category_ids)->get();
+        $customers = \App\Customer::whereIn('category_id', $category_ids)->get();
 
         foreach ($customers as $key => $customer) {
-            $mail_info = \App\Helpers\Mail::mail_content($template, $customer);
+            $mail_info = \App\Helpers\Mail::setMailContent($template, $customer);
             try {
-                \App\Helpers\Mail::send_mail($mail_info, $cc);
+                \App\Helpers\Mail::sendMail($mail_info, $cc);
                 Log::info('Email sent to: ' . $mail_info['email']);
                 \App\EmailLog::saveLog('sent', sprintf('Email [%s] sent task success', $mail_info['email']) );
             }catch(Exception $e) {
@@ -85,7 +82,7 @@ class SendMailTask extends Command
                 'subject' => $template->title
             ];
             try {
-                \App\Helpers\Mail::send_mail($mail_info, $cc);
+                \App\Helpers\Mail::sendMail($mail_info, $cc);
                 Log::info('Email sent to: ' . $mail_info['email']);
                 \App\EmailLog::saveLog('sent', sprintf('Email [%s] sent task success', $mail_info['email']) );
             }catch(Exception $e) {
@@ -99,7 +96,6 @@ class SendMailTask extends Command
         $mail_task->status = \App\MailTask::STATUS_DONE;
         $mail_task->save();
 
-        //Log::info('Finish check and send email task');
         return;
     }
 }

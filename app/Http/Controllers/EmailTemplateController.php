@@ -92,7 +92,7 @@ class EmailTemplateController extends Controller
                 $template->delete();
                 return response(['success' => true]);
             }
-            return response(['success' => false, 'message' => 'template not found']);
+            return response(['success' => false, 'message' => 'Không tìm thấy giao diện']);
         } 
     }
 

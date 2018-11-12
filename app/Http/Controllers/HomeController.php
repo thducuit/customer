@@ -32,7 +32,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = Category::where(['status' => 1])->get();
+        $categories = Category::where(['status' => Category::IN_USE])->get();
         $suppliers = Supplier::all();
 
         $labels2 = [];
@@ -53,7 +53,7 @@ class HomeController extends Controller
 
     public function mail(Request $request)
     {
-        $categories = Category::where(['status' => 1])->get();
+        $categories = Category::where(['status' => Category::IN_USE])->get();
         $templates = Template::where(['status' => Template::IN_USE])->get();
 
         if($request->isMethod('post')) {

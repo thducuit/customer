@@ -100,7 +100,7 @@ class ServiceController extends Controller
 
             Log::info('update service success: ' . $service->title);
 
-            $status = Service::check_status($service);
+            $status = Service::checkStatus($service);
             if($status == Service::STATUS_WARNING) {
                 \App\ServiceLog::saveLog($service);
                 return redirect('/quan-ly-dich-vu-thue')->with(['warning' => 'Cập nhật thành công! Dữ liệu của bạn vừa được ghi lại vào `Log theo dõi dịch vụ thuê` để thống kê']);
@@ -109,7 +109,8 @@ class ServiceController extends Controller
         return redirect('/quan-ly-dich-vu-thue')->with(['success' => 'Cập nhật thành công']);
     }
 
-    public function delete(Request $request) {
+    public function delete(Request $request) 
+    {
         if($request->ajax()) {
             $input = $request->all();
             $id = $input['id'];

@@ -9,6 +9,6 @@ class Category extends Model
     //
     protected $table = 'category';
 
-    const STOP = 0;
-    const RUNNING = 1;
+    const NOT_USE = 0;
+    const IN_USE = 1;
 }

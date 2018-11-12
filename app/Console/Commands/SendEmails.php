@@ -41,7 +41,7 @@ class SendEmails extends Command
     {
         //
         Log::info('Run cron check and send email daily');
-        $managements = \App\Management::get();
+        $customers = \App\Customer::get();
         $template = \App\Template::where(['auto' => \App\Template::IS_AUTO])->first();
         
         if(!$template) {
@@ -49,36 +49,36 @@ class SendEmails extends Command
             return;
         }
         
-        foreach ($managements as $key => $management) {
-            $expired_day = $management->dateexpired;
+        foreach ($customers as $key => $customer) {
+            $expired_day = $customer->dateexpired;
             if(!$expired_day) {
                 continue;
             }
 
             //get left days
-            $days = \App\Helpers\Utils::get_left_days($expired_day);
+            $days = \App\Helpers\Utils::getLeftDays($expired_day);
 
             $status = '';
             if($days==3||$days==5||$days==7||$days==30||$days==0) {
                 $status = "SẮP HẾT HẠN";
-                $management->status = \App\Management::STATUS_WARNING;
+                $customer->status = \App\Customer::STATUS_WARNING;
                 if($days == 0) { 
                     $status = "ĐÃ HẾT HẠN";
-                    $management->status = \App\Management::STATUS_EXPIRED;
+                    $customer->status = \App\Customer::STATUS_EXPIRED;
                 }
-                $management->save();
+                $customer->save();
 
                 //save customer log
-                \App\CustomerLog::saveLog($management);
+                \App\CustomerLog::saveLog($customer);
 
-                $mail_info = \App\Helpers\Mail::mail_content($template, $management, $status);
+                $mail_info = \App\Helpers\Mail::setMailContent($template, $customer, $status);
                 try {
                     $config_email_cc = [];
                     $config_cc = \App\Config::where(['key' => 'cc'])->first();
                     if($config_cc && $config_cc->value) {
                         $config_email_cc = $config_cc->value ? explode(',', $config_cc->value) : [];
                     }
-                    \App\Helpers\Mail::send_mail($mail_info, $config_email_cc);
+                    \App\Helpers\Mail::sendMail($mail_info, $config_email_cc);
                     Log::info('Email sent to: ' . $mail_info['email']);
                     \App\EmailLog::saveLog('sent', sprintf('Email [%s] sent to: %s day(s) left [%s]', $status, $mail_info['email'], $days) );
                 }catch(Exception $e) {
