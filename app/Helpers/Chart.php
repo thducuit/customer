@@ -29,17 +29,22 @@ class Chart {
                 'display' => false,
                 'id' => 'y-axis-' . $cat->id,
                 'ticks' => [
-                    // 'max' =>  30,
+                    'beginAtZero' => true,
                     'min' =>  0,
-                    'stepSize' => 5
+                    'stepSize' => 5,
                 ]
             ];
         }
 
         //add value from database to dataset[data]
+        $max_val = 0;
         foreach ($data as $d) {
             $datasets_temp[$d->cat]['data'][$d->month] = $d->val;
+            if($max_val < $d->val) {
+                $max_val = $d->val;
+            }
         }
+        
 
         //revert dataset
         foreach($datasets_temp as $dataset_temp) {
@@ -49,6 +54,11 @@ class Chart {
                 $dataset_temp['data'][] = $val;
             }
             $datasets[] = $dataset_temp;
+        }
+
+        foreach($yAxes as $key => $yAxes_e) {
+            $max_val = ceil($max_val/$yAxes[$key]['ticks']['stepSize']) * $yAxes[$key]['ticks']['stepSize'];
+            $yAxes[$key]['ticks']['max'] = $max_val;
         }
 
         return [
@@ -83,16 +93,20 @@ class Chart {
                 'display' => false,
                 'id' => 'y-axis-' . $cat->id,
                 'ticks' => [
-                    // 'max' =>  30,
+                    'beginAtZero' => true,
                     'min' =>  0,
-                    'stepSize' => 2
+                    'stepSize' => 5
                 ]
             ];
         }
 
         //add value from database to dataset[data]
+        $max_val = 0;
         foreach ($data as $d) {
             $datasets_temp[$d->cat]['data'][$d->sup] = $d->val;
+            if($max_val < $d->val) {
+                $max_val = $d->val;
+            }
         }
 
         //revert dataset
@@ -103,6 +117,11 @@ class Chart {
                 $dataset_temp['data'][] = $val;
             }
             $datasets[] = $dataset_temp;
+        }
+
+        foreach($yAxes as $key => $yAxes_e) {
+            $max_val = ceil($max_val/$yAxes[$key]['ticks']['stepSize']) * $yAxes[$key]['ticks']['stepSize'];
+            $yAxes[$key]['ticks']['max'] = $max_val;
         }
 
         return [

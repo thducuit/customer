@@ -127,7 +127,21 @@
 		$('#task-table').DataTable();
 		$('#sup-table').DataTable();
 		$('#cat-table').DataTable();
-		$('#ser-table').DataTable();
+		$('#ser-table').DataTable(
+			{
+				"columns": [
+					null,
+					null,
+					null,
+					null,
+					{ type: 'date-uk', targets: 1 },
+					{ type: 'date-uk', targets: 2 },
+					null,
+					{ "orderable": false },
+					{ "orderable": false }
+				]
+			}
+		);
 		$('#cus-table').DataTable({
 			"columns": [
 				null,
