@@ -7,12 +7,11 @@ use App\Constant as Constant;
 
 class Chart {
 
-    public function formatDataChartByCategory($data = []) 
+    public function formatDataChartByCategory($data = [], $categories = []) 
     {
         $datasets_temp = [];
         $datasets = [];
         $yAxes = [];
-        $categories = Category::where(['status' => 1])->get();
         $default_data = Constant::createDefautListByMonth();
         foreach($categories as $cat) {
             $datasets_temp[$cat->id] = [

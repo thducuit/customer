@@ -20,6 +20,7 @@
                     			<th>Hình</th>
                     			<!-- <th>Thứ tự</th> -->
                     			<th>Trạng thái</th>
+                                <th>Loại danh mục</th>
                                 <th>Sửa</th>
                                 <th>Xóa</th>
                     		</tr>
@@ -40,6 +41,13 @@
                                     <button class="btn btn-success btn-sm">Đang hoạt động</button>      
                                     @else   
                                     <button class="btn btn-default btn-sm">Tạm dừng</button>         
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($cat->is_for_rent == 0)
+                                    <button class="btn btn-danger btn-sm">Đang cho thuê</button>      
+                                    @else   
+                                    <button class="btn btn-default btn-sm">Không cho thuê</button>         
                                     @endif
                                 </td>
                     			<td>

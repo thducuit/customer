@@ -79,6 +79,7 @@ class CategoryController extends Controller
             $category->title = $input['title'];
             $category->status = isset($input['status']) ? $input['status'] : 1;
             $category->order = 1;
+            $category->is_for_rent = isset($input['is_for_rent']) ? $input['is_for_rent'] : 0;
             $category->chart_bg_color = $input['chart_bg_color'];
             $category->chart_bd_color = $input['chart_bd_color'];
             $category->save();

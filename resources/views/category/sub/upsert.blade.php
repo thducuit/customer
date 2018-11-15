@@ -37,6 +37,24 @@
                 </div>
             </div>
 
+            <div class="form-group{{ $errors->has('is_for_rent') ? ' has-error' : '' }}">
+                <label for="is_for_rent" class="col-md-4 control-label">Loại danh mục</label>
+
+                <div class="col-md-6">
+                    <select id="is_for_rent" type="text" class="form-control" name="is_for_rent" >
+                        <option value="0">Cho thuê</option>
+                        <option value="1">Không cho thuê</option>
+                    </select>
+                    <input type="hidden" class="is_for_rent" value="{{ old('is_for_rent') ? old('is_for_rent') : $category->is_for_rent  }}">
+
+                    @if ($errors->has('is_for_rent'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('is_for_rent') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
             <div class="form-group{{ $errors->has('chart_bg_color') ? ' has-error' : '' }}">
                 <label for="chart_bg_color" class="col-md-4 control-label">Màu nền chart</label>
 

@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Category as Category;
+
 class ChartService {
 
     private $chart_helper;
@@ -70,7 +72,7 @@ class ChartService {
     public function getExpiredCustomerByMonth()
     {
         $year = date('Y');
-        $sql = $sql = sprintf("
+        $sql = sprintf("
             SELECT COUNT(*) AS val, cus.`category_id` AS cat, month(cus.`dateexpired`) as `month`
             FROM `management` AS cus
             WHERE cus.`status` < 2 and year(cus.`dateexpired`) = %d
@@ -78,12 +80,12 @@ class ChartService {
             ", $year);
         
         $result = \DB::select(\DB::raw($sql));
-        return $this->chart_helper->formatDataChartByCategory($result);
+        $categories = Category::where(['status' => 1, 'is_for_rent' => 0])->get();
+        return $this->chart_helper->formatDataChartByCategory($result, $categories);
     }
 
     public function getServiceByCategoryAndSupplier()
-    {
-        
+    { 
         $sql = "
             SELECT COUNT(*) AS val, ser.`supplier_id` AS sup, ser.`category_id` AS cat
             FROM `services` AS ser
@@ -106,7 +108,8 @@ class ChartService {
             ", $year);
         
         $result = \DB::select(\DB::raw($sql));
-        return $this->chart_helper->formatDataChartByCategory($result);
+        $categories = Category::where(['status' => 1])->get();
+        return $this->chart_helper->formatDataChartByCategory($result, $categories);
     }
 
 }
