@@ -17,7 +17,6 @@
                     <table id="log-table" class="table table-striped table-bordered">
                     	<thead>
                     		<tr>
-                                <th>ID</th>
                                 <th>ID Khách hàng</th>
                     			<th>Tên khách hàng</th>
                                 <th>Dịch vụ</th>
@@ -44,8 +43,7 @@
                                 }
                             @endphp
                     		<tr>
-                                <td>{{ $log->id }}</td>
-                    			<td>{{ $log->customer_id }}</td>
+                                <td>{{ $log->customer_id }}</td>
                                 <td>{{ $log->customer ? sprintf("%s[%s]", $log->customer->customer, $log->customer->services) : ''  }}</td>
                     			<td>{{ $log->category ? $log->category->title : '' }}</td> 
                                 <td>{{ $log->supplier ? $log->supplier->name :  '' }}</td>

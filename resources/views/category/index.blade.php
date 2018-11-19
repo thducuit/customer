@@ -15,27 +15,28 @@
                     <table id="cat-table" class="table table-stripe table-bordered">
                     	<thead>
                     		<tr>
-                    			<th>ID</th>
+                    			<th>Thứ tự</th>
                     			<th>Tiêu đề</th>
                     			<th>Hình</th>
-                    			<!-- <th>Thứ tự</th> -->
-                    			<th>Trạng thái</th>
+                    		    <th>Trạng thái</th>
                                 <th>Loại danh mục</th>
                                 <th>Sửa</th>
                                 <th>Xóa</th>
                     		</tr>
                     	</thead>
                     	<tbody>
-                    		@foreach($categories as $cat)
-                    		<tr>
-                    			<td>{{ $cat->id }}</td>
+                            @php
+                                $count = 0;
+                            @endphp
+                            @foreach($categories as $cat)
+                            <tr>
+                    			<td>{{ ++$count }}</td>
                     			<td>{{ $cat->title }}</td>
                     			<td>
                                     @if($cat->gallery)
                                     <img width="80" src="{{ 'uploads/' . $cat->gallery }}" class="img-responsive">
                                     @endif
                                 </td>
-                    			<!-- <td>{{ $cat->category_order }}</td> -->
                     			<td>
                                     @if($cat->status == 1)
                                     <button class="btn btn-success btn-sm">Đang hoạt động</button>      
@@ -59,7 +60,6 @@
                     		</tr>
                     		@endforeach
                     	</tbody>
-
                         
                     </table>
                 </div>

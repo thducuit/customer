@@ -14,7 +14,7 @@
                     <table id="template-table" class="table table-stripe table-bordered">
                     	<thead>
                     		<tr>
-                    			<th>ID</th>
+                    			<th>Thứ tự</th>
                     			<th>Tiêu đề</th>
                     			<th>Trạng thái</th>
                                 <th>Mẫu mail tự động</th>
@@ -23,9 +23,12 @@
                     		</tr>
                     	</thead>
                     	<tbody>
+                            @php
+                                $count = 0;
+                            @endphp
                     		@foreach($templates as $temp)
                     		<tr>
-                    			<td>{{ $temp->id }}</td>
+                                <td>{{ ++$count }}</td>
                     			<td>{{ $temp->title }}</td>
                     			<td>
                                     @if($temp->status == 1)

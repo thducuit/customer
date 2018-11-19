@@ -111,7 +111,6 @@ class CustomerController extends Controller
                 'customer' => 'required',
                 'services' => 'required',
                 'category_id' => 'required',
-                'supplier_id' => 'required',
                 'services' => 'required',
                 'datecreated' => 'required',
                 'dateexpired' => 'required',
@@ -149,7 +148,7 @@ class CustomerController extends Controller
             $customer->customer = $input['customer'];
             $customer->services = $input['services'];
             $customer->category_id = $input['category_id'];
-            $customer->supplier_id = $input['supplier_id'];
+            $customer->supplier_id = 0;
             $customer->datecreated = Carbon::createFromFormat('d-m-Y', $input['datecreated'])->toDateTimeString();
             $customer->dateexpired = Carbon::createFromFormat('d-m-Y', $input['dateexpired'])->toDateTimeString();
             $customer->price = $input['price'];

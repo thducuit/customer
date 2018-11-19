@@ -65,7 +65,7 @@
                         	<thead>
                         		<tr>
                                     <!-- <th>ID</th> -->
-                                    <th class="sorting_disabled">Thứ tự</th>
+                                    <th>Thứ tự</th>
                         			<th>Dịch vụ</th>
                         			<th>Đối tác</th>
                                     <!--<th>Nhà cung cấp</th>-->

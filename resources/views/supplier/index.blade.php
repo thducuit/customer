@@ -14,16 +14,19 @@
                     <table id="sup-table" class="table table-stripe table-bordered">
                     	<thead>
                     		<tr>
-                    			<th>ID</th>
+                    			<th>Thứ tự</th>
                     			<th>Tên nhà cung cấp</th>
                                 <th></th>
                                 <th></th>
                     		</tr>
                     	</thead>
                     	<tbody>
+                            @php
+                                $count = 0;
+                            @endphp
                     		@foreach($suppliers as $sup)
                     		<tr>
-                    			<td>{{ $sup->id }}</td>
+                                <td>{{ ++$count }}</td>
                     			<td>{{ $sup->name }}</td>
                     			<td>
                                     <a href="/quan-ly-nha-cung-cap?expand=open&id={{ $sup->id }}"><span class="glyphicon glyphicon-pencil"></span></a>      

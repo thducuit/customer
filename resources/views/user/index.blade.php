@@ -11,7 +11,7 @@
                     <table id="user-table" class="table table-stripe table-bordered">
                     	<thead>
                     		<tr>
-                    			<th>ID</th>
+                    			<th>Thứ tự</th>
                     			<th>Tên</th>
                                 <th>Email</th>
                                 <th></th>
@@ -19,9 +19,12 @@
                     		</tr>
                     	</thead>
                     	<tbody>
+                            @php
+                                $count = 0;
+                            @endphp
                     		@foreach($users as $user)
                     		<tr>
-                    			<td>{{ $user->id }}</td>
+                                <td>{{ ++$count }}</td>
                     			<td>{{ $user->name }}</td>
                     			<td>
                                     {{ $user->email }}    

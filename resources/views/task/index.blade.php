@@ -11,7 +11,7 @@
                 	<table id="task-table" class="table table-stripe table-bordered">
                     	<thead>
                     		<tr>
-                    			<th>ID</th>
+                    			<th>Thứ tự</th>
                                 <th>Danh mục</th>
                                 <th>Tiêu đề</th>
                     			<th>Email</th>
@@ -22,6 +22,9 @@
                     		</tr>
                     	</thead>
                     	<tbody>
+                            @php
+                                $count = 0;
+                            @endphp
                     		@foreach($email_tasks as $email_task)
                     		@php
                                 if($email_task->status== \App\MailTask::STATUS_WAITING){
@@ -42,7 +45,7 @@
                                 }
                             @endphp
                     		<tr>
-                    			<td>{{ $email_task->id }}</td>
+                                <td>{{ ++$count }}</td>
                     			<td>{!! \App\Helpers\Utils::getCategoryTitle($email_task->category_ids) !!}</td>
                                 <td>{{ $email_task->title }}</td>
                                 <td>{{ $email_task->email }}</td>

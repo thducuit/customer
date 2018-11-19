@@ -74,7 +74,7 @@
                 </div>
             </div>
 
-            <div class="form-group{{ $errors->has('supplier') ? ' has-error' : '' }}">
+            <!--<div class="form-group{{ $errors->has('supplier') ? ' has-error' : '' }}">
                 <label for="supplier" class="col-md-4 control-label">Nhà cung cấp (*)</label>
 
                 <div class="col-md-6">
@@ -93,7 +93,7 @@
                         </span>
                     @endif
                 </div>
-            </div>
+            </div>-->
 
             <div class="form-group">
                 <label class="col-md-4 control-label">Ngày tạo / Hết hạn (*)</label>

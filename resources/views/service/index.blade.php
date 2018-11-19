@@ -14,7 +14,7 @@
                     <table id="ser-table" class="table table-stripe table-bordered">
                     	<thead>
                     		<tr>
-                    			<th>ID</th>
+                    			<th>Thứ tự</th>
                                 <th>Tên dịch vụ</th>
                                 <th>Loại dịch vụ</th>
                     			<th>Tên nhà cung cấp</th>
@@ -26,6 +26,9 @@
                     		</tr>
                     	</thead>
                     	<tbody>
+                            @php
+                                $count = 0;
+                            @endphp
                     		@foreach($services as $ser)
                             @php
                                 if($ser->status== \App\Service::STATUS_RUNNING){
@@ -42,7 +45,7 @@
                                 }
                             @endphp
                     		<tr>
-                    			<td>{{ $ser->id }}</td>
+                                <td>{{ ++$count }}</td>
                     			<td>{{ $ser->title }}</td>
                                 <td>
                                     {{ $ser->category && $ser->category->title ? $ser->category->title : '' }}

@@ -17,7 +17,6 @@
                     <table id="log-table" class="table table-striped table-bordered">
                     	<thead>
                     		<tr>
-                                <th>ID</th>
                                 <th>ID Dịch vụ</th>
                     			<th>Tên dịch vụ</th>
                                 <th>Loại dịch vụ</th>
@@ -44,8 +43,7 @@
                                 }
                             @endphp
                     		<tr>
-                                <th>{{ $log->id }}</th>
-                    			<td>{{ $log->service_id }}</td>
+                                <td>{{ $log->service_id }}</td>
                                 <td>{{ $log->service ? sprintf("%s", $log->service->title) : ''  }}</td>
                     			<td>{{ $log->category ? $log->category->title : '' }}</td> 
                                 <td>{{ $log->supplier ? $log->supplier->name :  '' }}</td>
