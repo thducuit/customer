@@ -61,6 +61,7 @@ Route::post('/user/change', 'UserController@change');
 
 Route::post('/service/update', 'ServiceController@post');
 Route::post('/service/delete', 'ServiceController@delete');
+Route::post('/service/extra', 'ServiceController@extra');
 
 Route::get('/test', 'HomeController@test');
 

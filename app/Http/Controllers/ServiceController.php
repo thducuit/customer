@@ -113,7 +113,8 @@ class ServiceController extends Controller
         return redirect('/quan-ly-dich-vu-thue')->with(['success' => 'Cập nhật thành công']);
     }
 
-    public function delete(Request $request) {
+    public function delete(Request $request) 
+    {
         if($request->ajax()) {
             $input = $request->all();
             $id = $input['id'];
@@ -124,6 +125,31 @@ class ServiceController extends Controller
             }
             return response(['success' => false, 'message' => 'Không tìm thấy dịch vụ thuê']);
         } 
+    }
+
+    public function extra(Request $request) 
+    {
+        if($request->isMethod('post')) {
+            $input = $request->all();
+            $id = $input['extra_id'];
+            $period = $input['period'];
+            $unit = $input['unit'];
+
+            $service = Service::where(['id' => $id])->first();
+            $expired_day = $service->dateexpired;
+
+            $new_date = \App\Helpers\Utils::extra_time($expired_day, $period, $unit);
+
+            $service->dateexpired = $new_date;
+            $service->datecreated = date('Y-m-d');
+
+            $service->save();
+
+            Service::check_status($service);
+            
+        }
+
+        return redirect('/quan-ly-dich-vu-thue')->with(['success' => 'Gia hạn thành công']);
     }
 
 }

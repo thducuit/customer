@@ -24,6 +24,7 @@
                                 <th>Giá</th>
                                 <th></th>
                                 <th></th>
+                                <th></th>
                     		</tr>
                     	</thead>
                     	<tbody>
@@ -61,6 +62,9 @@
                                 </td>
                                 <td>{{ $ser->price }}</td>
                                 <td>
+                                    <a href="#" class="btn-extra" data-name='{{ $ser->title }}' data-id="{{ $ser->id }}">Gia hạn</a>
+                                </td>
+                                <td>
                                     <a href="/quan-ly-dich-vu-thue?expand=open&id={{ $ser->id }}"><span class="glyphicon glyphicon-pencil"></span></a>      
                                 </td>
                                 <td>
@@ -81,6 +85,7 @@
     <div class="controller">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
+                @include('service/sub/extra', ['expand' => $expand])
                 @include('service/sub/upsert', ['service' => $service, 'categories' => $categories, 'suppliers' => $suppliers])
             </div>
         </div>
