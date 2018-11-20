@@ -77,6 +77,9 @@
                                 <li><a href="/quan-ly-logs-dich-vu-thue">Log theo dõi dịch vụ thuê</a></li>
                                 <li><a href="/quan-ly-tasks">Tiến trình gửi email</a></li>
                                 <li><a href="/quan-ly-tai-khoan">Tài khoản</a></li>
+                                @if (Auth::check())
+                                <li><a href="/register">Tạo Tài khoản</a></li>
+                                @endif
                             </ul>
                         </li>
                     </ul>

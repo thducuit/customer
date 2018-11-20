@@ -63,6 +63,8 @@ class ServiceController extends Controller
                 'dateexpired' => 'required',
                 'category_id' => 'required',
                 'supplier_id' => 'required',
+                'email' => 'required',
+                'price' => 'required',
             ]);
 
             if ($validator->fails()) {
@@ -94,6 +96,8 @@ class ServiceController extends Controller
             $service->status = isset($input['status']) ? $input['status'] : 1;
             $service->category_id = $input['category_id'];
             $service->supplier_id = $input['supplier_id'];
+            $service->email = $input['email'];
+            $service->price = $input['price'];
             $service->datecreated = Carbon::createFromFormat('d-m-Y', $input['datecreated'])->toDateTimeString();
             $service->dateexpired = Carbon::createFromFormat('d-m-Y', $input['dateexpired'])->toDateTimeString();
             $service->save();

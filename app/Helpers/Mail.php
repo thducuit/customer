@@ -2,6 +2,7 @@
 namespace App\Helpers;
 
 class Mail {
+
     public static function mail_content($template, $management, $slogan = '') 
     {
         //Tính giá trị mới bằng giá trị cũ - 10%
@@ -78,5 +79,57 @@ class Mail {
                 $message->cc($mailcc);
             }
         });
+    }
+
+    public static function mail_content_service($template, $service, $slogan = '') 
+    {
+        //Tính giá trị mới bằng giá trị cũ - 10%
+        $price_vat = '';
+        $price = explode(",", $service->price);
+        foreach($price as $pr){
+            $price_vat.=$pr;
+        }
+        $price = intval($price_vat);
+        $price_vat = $price + ceil(($price*10)/100);
+        $price_vat = number_format($price_vat);
+        
+        $datecreated=date("d/m/Y",strtotime($service->datecreated));
+        $dateexpired=date("d/m/Y",strtotime($service->dateexpired));
+        $category = $service->supplier ? $service->supplier->name : '';
+        $email = $service->email;
+        $project = $service->title;
+
+        $subject = $template->title;
+        $subject = str_replace("{category}", strtoupper($category), $subject);
+        $subject = str_replace("{datecreated}",$datecreated, $subject);
+        $subject = str_replace("{dateexpired}",$dateexpired, $subject);
+        $subject = str_replace("{project}",$project, $subject);
+        $subject = str_replace("{price}",$price_vat, $subject);
+        $subject = str_replace("{email}",$email, $subject);
+        $subject = str_replace("{STATUS}",$slogan, $subject);
+
+        $content = $template->content;
+        $content = str_replace("{datecreated}", $datecreated, $content);
+        $content = str_replace("{dateexpired}", $dateexpired, $content);
+        $content = str_replace("{category}", strtoupper($category), $content);
+        $content = str_replace("{project}", $project, $content);
+        $content = str_replace("{price}", $price_vat, $content);
+        $content = str_replace("{email}", $email, $content);
+        $content = str_replace("{STATUS}", $slogan, $content);
+
+        $emails = $email ? explode(',', $email) : [];
+        $email_send =  '';
+        if(count($emails) > 0) {
+            $email_send = $emails[0];
+            unset($emails[0]);
+        }
+        $emails_cc = $emails;
+        
+        return [
+            'email' => $email_send,
+            'cc' => $emails_cc,
+            'content' => $content,
+            'subject' => $subject
+        ];     
     }
 }

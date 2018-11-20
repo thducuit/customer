@@ -102,11 +102,12 @@ class EmailTemplateController extends Controller
             $input = $request->all();
             $id = $input['auto_id'];
             $cc = $input['cc'];
+            $auto = $input['auto'];
 
             $template = Template::where(['id' => $id])->first();
-            Template::where('auto', '=', 1)->update(['auto' => 0]);
+            Template::where('auto', '=', $auto)->update(['auto' => 0]);
 
-            $template->auto = 1;
+            $template->auto = $auto;
             $template->cc = $cc;
             $template->save();
 

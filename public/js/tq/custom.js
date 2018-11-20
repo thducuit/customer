@@ -45,6 +45,7 @@
 		});
 
 		$('#status').val($('.status').val());
+		$('#auto').val($('.auto').val());
 		$('#category_id').val($('.category_id').val());
 		$('#supplier_id').val($('.supplier_id').val());
 		$('.filter-form input').on('change', function() {
@@ -137,6 +138,7 @@
 					{ type: 'date-uk', targets: 1 },
 					{ type: 'date-uk', targets: 2 },
 					null,
+					{ type: 'numeric-comma', targets: 5 },
 					{ "orderable": false },
 					{ "orderable": false }
 				]

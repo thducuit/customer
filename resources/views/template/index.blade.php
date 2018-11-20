@@ -39,9 +39,11 @@
                                 </td>
                                 <td>
                                     @if($temp->auto == 1)
-                                    <a class="btn btn-danger btn-sm"  href="/quan-ly-mau-email?expand=open&id={{ $temp->id }}&auto=1">Đang kích hoạt</a>      
-                                    @else   
+                                    <a class="btn btn-danger btn-sm"  href="/quan-ly-mau-email?expand=open&id={{ $temp->id }}&auto=1">Cho khách hàng</a>      
+                                    @elseif($temp->auto == 0)   
                                     <a class="btn btn-default btn-sm btn-auto-mail" href="/quan-ly-mau-email?expand=open&id={{ $temp->id }}&auto=1">Kích hoạt</a>         
+                                    @else
+                                    <a class="btn btn-info btn-sm btn-auto-mail" href="/quan-ly-mau-email?expand=open&id={{ $temp->id }}&auto=1">Cho dịch vụ thuê</a>         
                                     @endif
                                 </td>
                     			<td>
@@ -130,13 +132,26 @@
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/template/auto') }}">
                             {{ csrf_field() }}
                             <input type="hidden" name="auto_id" id="auto_id" value="{{ $template ? $template->id : '' }}">
+                            
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Loại mẫu mail</label>
+                                <div class="col-md-6">
+                                    <select id="auto" type="text" class="form-control" name="auto" >
+                                        <option value="0">mẫu thông thường</option>
+                                        <option value="1">mẫu thông báo tự động dành cho khách hàng</option>
+                                        <option value="2">mẫu thông báo tự động về dịch vụ thuê</option>
+                                    </select>
+                                    <input type="hidden" class="auto" value="{{ $template ? $template->auto : 0 }}">
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Thêm cc</label>
-
                                 <div class="col-md-6">
                                     <input id="cc_input" type="text" name="cc" class="form-control" value="{{ $template ? $template->cc : '' }}">
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">

@@ -21,6 +21,7 @@
                                 <th>Ngày tạo</th>
                                 <th>Ngày hết hạn</th>
                                 <th>Trang thái</th>
+                                <th>Giá</th>
                                 <th></th>
                                 <th></th>
                     		</tr>
@@ -58,6 +59,7 @@
                     			<td class="text-center">
                                     <span class = "label label-{{ $color }}">{{ $status }}</span>
                                 </td>
+                                <td>{{ $ser->price }}</td>
                                 <td>
                                     <a href="/quan-ly-dich-vu-thue?expand=open&id={{ $ser->id }}"><span class="glyphicon glyphicon-pencil"></span></a>      
                                 </td>

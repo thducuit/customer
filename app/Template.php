@@ -10,6 +10,7 @@ class Template extends Model
 	const NOT_USE = 0;
 
 	const IS_AUTO = 1;
+	const IS_AUTO_SERVICE = 2;
 
     //
     protected $table = 'post';
