@@ -19,7 +19,7 @@ Route::get('/home', 'HomeController@index');
 Route::get('/quan-ly-dich-vu', 'CategoryController@index');
 Route::get('/quan-ly-nha-cung-cap', 'SupplierController@index');
 Route::match(['get', 'post'], '/quan-ly-khach-hang', ['as' => 'customer', 'uses' => 'CustomerController@index']);
-Route::get('/quan-ly-mau-email', 'EmailTemplateController@index');
+Route::match(['get', 'post'], '/quan-ly-mau-email', 'EmailTemplateController@index');
 Route::get('/them-cc', 'EmailTemplateController@addCC');
 Route::get('/quan-ly-logs', 'LogController@index');
 Route::get('/quan-ly-logs-dich-vu-thue', 'LogController@index2');

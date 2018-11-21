@@ -30,6 +30,15 @@ class EmailTemplateController extends Controller
     	$id = $request->get('id');
         $is_expand = $request->get('expand', false);
         $is_auto = $request->get('auto', false);
+        $orders = $request->get('order', []);
+
+        if($request->isMethod('post')) {
+            foreach($orders as $idx => $value) {
+                $customer = Template::where(['id' => $idx])->first();
+                $customer->order = $value;
+                $customer->save();
+            }
+        }
 
         $template = null; 
         if($id) {
@@ -38,7 +47,7 @@ class EmailTemplateController extends Controller
             $template = new Template;
         }
         
-    	$templates = Template::all();
+    	$templates = Template::orderBy('order', 'asc')->get();
         return view('template.index', [
         	'templates' => $templates,
             'template' => $template,
@@ -75,6 +84,11 @@ class EmailTemplateController extends Controller
             $template->title = $input['title'];
             $template->status = isset($input['status']) ? $input['status'] : 1;
             $template->content = stripslashes($input['content']);
+
+            if(!$id) {
+                $template->order = 1;
+            }
+
             $template->save();
 
             Log::info('update template success: ' . $template->title);

@@ -11,54 +11,59 @@
                     <div class="pull-right action-block">
                         <a href="/quan-ly-mau-email?expand=open" class="btn btn-info btn-add">Thêm mới</a>
                     </div>
-                    <table id="template-table" class="table table-stripe table-bordered">
-                    	<thead>
-                    		<tr>
-                    			<th>Thứ tự</th>
-                    			<th>Tiêu đề</th>
-                    			<th>Trạng thái</th>
-                                <th>Loại tự động</th>
-                                <th></th>
-                    			<th></th>
-                    			<th></th>
-                    		</tr>
-                    	</thead>
-                    	<tbody>
-                            @php
-                                $count = 0;
-                            @endphp
-                    		@foreach($templates as $temp)
-                    		<tr>
-                                <td>{{ ++$count }}</td>
-                    			<td>{{ $temp->title }}</td>
-                    			<td>
-                                    @if($temp->status == 1)
-                                    <span class = "label label-success">Đang sử dụng</span>      
-                                    @else   
-                                    <span class = "label label-default">Tạm ngưng</span>         
-                                    @endif
-                                </td>
-                                <td>
-                                    @if($temp->auto == 1)
-                                    <span class = "label label-success">Dành khách hàng</a>      
-                                    @elseif($temp->auto == 2)   
-                                    <span class = "label label-info">Dành cho dịch vụ</a>
-                                    @endif
-                                </td>
-                                <td>
-                                <a class="btn-auto-mail" href="/quan-ly-mau-email?expand=open&id={{ $temp->id }}&auto=1">Sửa auto email</a>    
-                                </td>
-                    			<td>
-                                    <a href="/quan-ly-mau-email?expand=open&id={{ $temp->id }}"><span class="glyphicon glyphicon-pencil"></span></a>
-                                            
-                                </td>
-                                <td>
-                                    <a href="#" class="btn-delete" data-action="{{ url('/template/delete') }}" data-method="delete" data-id="{{ $temp->id }}"><span class="glyphicon glyphicon-remove"></span></a> 
-                                </td>
-                    		</tr>
-                    		@endforeach
-                    	</tbody>
-                    </table>
+                    <form method="post">
+                        {{ csrf_field() }}
+                        <div class="col-md-12 action-block">
+                            <button type="submit" class="btn btn-info pull-right">
+                                <span class="glyphicon glyphicon-refresh"></span>
+                            </button>
+                        </div>
+                        <table id="template-table" class="table table-stripe table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Thứ tự</th>
+                                    <th>Tiêu đề</th>
+                                    <th>Trạng thái</th>
+                                    <th>Loại tự động</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($templates as $temp)
+                                <tr>
+                                    <td data-sort="{{ $temp->order }}"><input type="text" name="order[{{ $temp->id }}]" value="{{ $temp->order }}" style="width:45px" class="form-control input-xs"></td>
+                                    <td>{{ $temp->title }}</td>
+                                    <td>
+                                        @if($temp->status == 1)
+                                        <span class = "label label-success">Đang sử dụng</span>      
+                                        @else   
+                                        <span class = "label label-default">Tạm ngưng</span>         
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($temp->auto == 1)
+                                        <span class = "label label-success">Dành khách hàng</a>      
+                                        @elseif($temp->auto == 2)   
+                                        <span class = "label label-info">Dành cho dịch vụ</a>
+                                        @endif
+                                    </td>
+                                    <td>
+                                    <a class="btn-auto-mail" href="/quan-ly-mau-email?expand=open&id={{ $temp->id }}&auto=1">Sửa auto email</a>    
+                                    </td>
+                                    <td>
+                                        <a href="/quan-ly-mau-email?expand=open&id={{ $temp->id }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                                                
+                                    </td>
+                                    <td>
+                                        <a href="#" class="btn-delete" data-action="{{ url('/template/delete') }}" data-method="delete" data-id="{{ $temp->id }}"><span class="glyphicon glyphicon-remove"></span></a> 
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
             </div>
         </div>
