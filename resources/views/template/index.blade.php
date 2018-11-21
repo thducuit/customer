@@ -24,7 +24,7 @@
                                     <th>Thứ tự</th>
                                     <th>Tiêu đề</th>
                                     <th>Trạng thái</th>
-                                    <th>Loại tự động</th>
+                                    <th>Loại tự động thông báo hết hạn</th>
                                     <th></th>
                                     <th></th>
                                     <th></th>
@@ -44,7 +44,7 @@
                                     </td>
                                     <td>
                                         @if($temp->auto == 1)
-                                        <span class = "label label-success">Dành khách hàng</a>      
+                                        <span class = "label label-danger">Dành khách hàng</a>      
                                         @elseif($temp->auto == 2)   
                                         <span class = "label label-info">Dành cho dịch vụ</a>
                                         @endif
@@ -141,12 +141,12 @@
                             <input type="hidden" name="auto_id" id="auto_id" value="{{ $template ? $template->id : '' }}">
                             
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Loại mẫu email tự động</label>
+                                <label class="col-md-4 control-label">Mẫu email tự động thông báo hết hạn</label>
                                 <div class="col-md-6">
                                     <select id="auto" type="text" class="form-control" name="auto" >
-                                        <option value="0">mẫu thông thường</option>
-                                        <option value="1">mẫu dành cho khách hàng</option>
-                                        <option value="2">mẫu dành cho dịch vụ thuê</option>
+                                        <option value="0">-- Chọn --</option>
+                                        <option value="1">dành cho khách hàng</option>
+                                        <option value="2">dành cho dịch vụ thuê</option>
                                     </select>
                                     <input type="hidden" class="auto" value="{{ $template ? $template->auto : 0 }}">
                                 </div>
