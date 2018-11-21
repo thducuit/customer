@@ -77,9 +77,7 @@
                                 <li><a href="/quan-ly-logs-dich-vu-thue">Log theo dõi dịch vụ thuê</a></li>
                                 <li><a href="/quan-ly-tasks">Tiến trình gửi email</a></li>
                                 <li><a href="/quan-ly-tai-khoan">Tài khoản</a></li>
-                                @if (Auth::check())
-                                <li><a href="/register">Tạo Tài khoản</a></li>
-                                @endif
+                                
                             </ul>
                         </li>
                     </ul>
@@ -89,7 +87,7 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Register</a></li>
+                            <!-- <li><a href="{{ url('/register') }}">Register</a></li> -->
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

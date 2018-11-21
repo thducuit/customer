@@ -32,8 +32,8 @@ class LogController extends Controller
     	$filler_date_from = $request->get('filler_date_from');
         $filler_date_to = $request->get('filler_date_to');
 
-        $filler_date_from = (!$filler_date_from) ? date('Y-m-d 00:00:00') : Carbon::createFromFormat('d-m-Y H:i:s', $filler_date_from . ' 00:00:00')->format('Y-m-d');
-        $filler_date_to = (!$filler_date_to) ? date('Y-m-d 23:59:59', strtotime('+6 day')) : Carbon::createFromFormat('d-m-Y H:i:s', $filler_date_to . ' 23:59:59')->format('Y-m-d');
+        $filler_date_from = (!$filler_date_from) ? date('Y-m-d 00:00:00', strtotime('-6 day')) : Carbon::createFromFormat('d-m-Y H:i:s', $filler_date_from . ' 00:00:00')->format('Y-m-d');
+        $filler_date_to = (!$filler_date_to) ? date('Y-m-d 23:59:59') : Carbon::createFromFormat('d-m-Y H:i:s', $filler_date_to . ' 23:59:59')->format('Y-m-d');
         
         $logs = CustomerLog::query()
                             ->join(\DB::raw('(SELECT MAX(`id`) AS id, `month`, `customer_id`, `year` FROM `customer_log` GROUP BY `month`, `customer_id`, `year`) as clm'), 'clm.id',  '=', 'customer_log.id')
@@ -71,8 +71,8 @@ class LogController extends Controller
     	$filler_date_from = $request->get('filler_date_from');
         $filler_date_to = $request->get('filler_date_to');
 
-        $filler_date_from = (!$filler_date_from) ? date('Y-m-d 00:00:00') : Carbon::createFromFormat('d-m-Y H:i:s', $filler_date_from . ' 00:00:00')->format('Y-m-d');
-        $filler_date_to = (!$filler_date_to) ? date('Y-m-d 23:59:59', strtotime('+6 day')) : Carbon::createFromFormat('d-m-Y H:i:s', $filler_date_to . ' 23:59:59')->format('Y-m-d');
+        $filler_date_from = (!$filler_date_from) ? date('Y-m-d 00:00:00', strtotime('-6 day')) : Carbon::createFromFormat('d-m-Y H:i:s', $filler_date_from . ' 00:00:00')->format('Y-m-d');
+        $filler_date_to = (!$filler_date_to) ? date('Y-m-d 23:59:59') : Carbon::createFromFormat('d-m-Y H:i:s', $filler_date_to . ' 23:59:59')->format('Y-m-d');
         
         $logs = ServiceLog::query()
                             ->join(\DB::raw('(SELECT MAX(`id`) AS id, `month`, `service_id`, `year` FROM `service_logs` GROUP BY `month`, `service_id`, `year`) as slm'), 'slm.id',  '=', 'service_logs.id')

@@ -39,16 +39,16 @@
                                 </td>
                     			<td>
                                     @if($cat->status == 1)
-                                    <button class="btn btn-success btn-sm">Đang hoạt động</button>      
+                                    <span class = "label label-success">Đang hoạt động</span> 
                                     @else   
-                                    <button class="btn btn-default btn-sm">Tạm dừng</button>         
+                                    <span class = "label label-default">Tạm dừng</span>         
                                     @endif
                                 </td>
                                 <td>
                                     @if($cat->is_for_rent == 0)
-                                    <button class="btn btn-danger btn-sm">Đang cho thuê</button>      
+                                    <span class = "label label-danger">Đang cho thuê</span>      
                                     @else   
-                                    <button class="btn btn-default btn-sm">Không cho thuê</button>         
+                                    <span class = "label label-default">Không cho thuê</span>         
                                     @endif
                                 </td>
                     			<td>

@@ -10,8 +10,8 @@
                 <div class="panel-body">
                 	<div class="pull-right action-block row">
                 		<form class="filter-form" method="get">
-                            <div class="col-md-6"><input type="text" name="filler_date_from"  class="form-control datepicker" value="{{ $filler_date_from ? date('d-m-Y', strtotime($filler_date_from)) : date('d-m-Y') }}" placeholder="from" /></div>
-                            <div class="col-md-6"><input type="text" name="filler_date_to"  class="form-control datepicker" value="{{ $filler_date_to ? date('d-m-Y', strtotime($filler_date_to)) : date('d-m-Y', strtotime('+6 day')) }}" placeholder="to"/></div>	
+                            <div class="col-md-6"><input type="text" name="filler_date_from"  class="form-control datepicker" value="{{ $filler_date_from ? date('d-m-Y', strtotime($filler_date_from)) : date('d-m-Y', strtotime('-6 day')) }}" placeholder="from" /></div>
+                            <div class="col-md-6"><input type="text" name="filler_date_to"  class="form-control datepicker" value="{{ $filler_date_to ? date('d-m-Y', strtotime($filler_date_to)) : date('d-m-Y') }}" placeholder="to"/></div>	
                 		</form>
                     </div>
                     <table id="log-table" class="table table-striped table-bordered">
@@ -20,7 +20,6 @@
                                 <th>ID Khách hàng</th>
                     			<th>Tên khách hàng</th>
                                 <th>Dịch vụ</th>
-                    			<th>Nhà cung cấp</th>
                                 <th>Trạng thái</th>
                     			<th>Ngày</th>
                                 <th></th>
@@ -46,7 +45,6 @@
                                 <td>{{ $log->customer_id }}</td>
                                 <td>{{ $log->customer ? sprintf("%s[%s]", $log->customer->customer, $log->customer->services) : ''  }}</td>
                     			<td>{{ $log->category ? $log->category->title : '' }}</td> 
-                                <td>{{ $log->supplier ? $log->supplier->name :  '' }}</td>
                                 <td>
                                     <span class = "label label-{{ $color }}">{{ $status }}</span>
                                 </td>

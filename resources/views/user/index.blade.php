@@ -8,6 +8,9 @@
                 <div class="panel-heading">Tài khoản</div>
                 
                 <div class="panel-body">
+                    <div class="pull-right action-block">
+                        <a href="{{ url('/register') }}" class="btn btn-primary">Đăng ký</a>
+                    </div>
                     <table id="user-table" class="table table-stripe table-bordered">
                     	<thead>
                     		<tr>

@@ -63,8 +63,9 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Register
+                                    Đăng ký mới
                                 </button>
+                                <a href="{{ url('/quan-ly-tai-khoan') }}" class="btn btn-default">Trở về</a>
                             </div>
                         </div>
                     </form>
