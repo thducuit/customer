@@ -34,10 +34,12 @@ class EmailTemplateController extends Controller
 
         if($request->isMethod('post')) {
             foreach($orders as $idx => $value) {
-                $customer = Template::where(['id' => $idx])->first();
-                $customer->order = $value;
-                $customer->save();
+                $template = Template::where(['id' => $idx])->first();
+                $template->order = $value;
+                $template->save();
             }
+
+            $this->updateOrder();
         }
 
         $template = null; 
@@ -74,6 +76,8 @@ class EmailTemplateController extends Controller
 
             $input = $request->all();
             $id = $input['id'];
+            $cc = $input['cc'];
+            $auto = $input['auto'];
 
             $template = null;
             if($id) {
@@ -81,15 +85,26 @@ class EmailTemplateController extends Controller
             }else {
                 $template = new Template;
             }
+
             $template->title = $input['title'];
             $template->status = isset($input['status']) ? $input['status'] : 1;
             $template->content = stripslashes($input['content']);
+            $template->cc = $cc;
+            $template->auto = (int)$input['auto'];
 
             if(!$id) {
                 $template->order = 1;
             }
 
+            if($id) {
+                Template::where('auto', '=', $auto)->where('id', '<>', $id)->update(['auto' => 0]);
+            }
+
+            // var_dump($template); die();
+
             $template->save();
+
+            $this->updateOrder();
 
             Log::info('update template success: ' . $template->title);
         }
@@ -104,6 +119,7 @@ class EmailTemplateController extends Controller
             if($id) {
                 $template = Template::where(['id' => $id])->first();
                 $template->delete();
+                $this->updateOrder();
                 return response(['success' => true]);
             }
             return response(['success' => false, 'message' => 'template not found']);
@@ -168,5 +184,13 @@ class EmailTemplateController extends Controller
         }
     }
 
-
+    private function updateOrder()
+    {
+        $templates = Template::orderBy('order', 'asc')->orderBy('created_at', 'desc')->get();
+        $count = 0;
+        foreach($templates as $template) {
+            $template->order = ++$count;
+            $template->save();
+        }
+    }
 }

@@ -49,6 +49,8 @@ class CustomerController extends Controller
                 $customer->order = $value;
                 $customer->save();
             }
+
+            $this->updateOrder();
         }
 
         $query = Management::whereIn('status', [0, 1, 2]);
@@ -164,6 +166,8 @@ class CustomerController extends Controller
 
             $customer->save();
 
+            $this->updateOrder();
+
             Log::info('update customer success: ' . $customer->customer);
 
             $status = Management::check_status($customer);
@@ -184,6 +188,7 @@ class CustomerController extends Controller
             if($id) {
                 $customer = Management::where(['id' => $id])->first();
                 $customer->delete();
+                $this->updateOrder();
                 return response(['success' => true]);
             }
             return response(['success' => false, 'message' => 'customer not found']);
@@ -244,5 +249,15 @@ class CustomerController extends Controller
         }
 
         return redirect('/quan-ly-khach-hang')->with(['success' => 'Gia hạn thành công']);
+    }
+
+    private function updateOrder()
+    {
+        $customers = Management::orderBy('order', 'asc')->orderBy('created_at', 'desc')->get();
+        $count = 0;
+        foreach($customers as $customer) {
+            $customer->order = ++$count;
+            $customer->save();
+        }
     }
 }

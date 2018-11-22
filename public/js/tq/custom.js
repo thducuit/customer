@@ -141,6 +141,7 @@
 					{ type: 'numeric-comma', targets: 5 },
 					{ "orderable": false },
 					{ "orderable": false },
+					{ "orderable": false },
 					{ "orderable": false }
 				]
 			}

@@ -8,7 +8,10 @@ use Validator;
 use App\Category;
 use App\Service;
 use App\Supplier;
+use App\Template;
 use Carbon\Carbon;
+use App\Helpers\Mail as MailHelper;
+
 
 class ServiceController extends Controller
 {
@@ -42,12 +45,14 @@ class ServiceController extends Controller
             $service = new Service;
         }
         
-    	$services = Service::get();
+        $services = Service::get();
+        $templates = Template::where(['status' => Template::IN_USE])->get();
         return view('service.index', [
         	'categories' => $categories,
             'suppliers' => $suppliers,
             'service' => $service,
             'services' => $services,
+            'templates' => $templates,
             'expand' => $isExpand
         ]);
     }
@@ -111,6 +116,37 @@ class ServiceController extends Controller
             }
         }
         return redirect('/quan-ly-dich-vu-thue')->with(['success' => 'Cập nhật thành công']);
+    }
+
+    public function mail(Request $request) 
+    {
+        if($request->isMethod('post')) {
+            $input = $request->all();
+            $id = $input['mail_id'];
+            $template_id = $input['template_id'];
+            $status = isset($input['status']) ? $input['status'] : 1;
+
+            $template = Template::where(['id' => $template_id])->first();
+            $service = Service::where(['id' => $id])->first();
+
+            $mail_info = MailHelper::mail_content_service($template, $service, $status);
+            try {
+                $config_email_cc = [];
+                $config_cc = \App\Config::where(['key' => 'cc'])->first();
+                if($config_cc && $config_cc->value) {
+                    $config_email_cc = explode(',', $config_cc->value);
+                }
+                
+                MailHelper::send_mail($mail_info, $config_email_cc);
+                Log::info('Email sent to: ' . $mail_info['email']);
+                \App\EmailLog::saveLog('sent', sprintf('Email [%s] sent to: %s', $status, $mail_info['email']) );
+            }catch(Exception $e) {
+                Log::error($e->getMessage());
+                \App\EmailLog::saveLog('error', sprintf('Email %s sent to: %s with error: %s', $status, $mail_info['email']), $e->getMessage() );
+            }
+        }
+
+        return redirect('/quan-ly-dich-vu-thue')->with(['success' => 'Gửi mail thành công']);
     }
 
     public function delete(Request $request) 

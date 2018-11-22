@@ -25,6 +25,7 @@
                                 <th></th>
                                 <th></th>
                                 <th></th>
+                                <th></th>
                     		</tr>
                     	</thead>
                     	<tbody>
@@ -70,6 +71,9 @@
                                 <td>
                                     <a href="#" class="btn-delete" data-action="{{ url('/service/delete') }}" data-method="delete" data-id="{{ $ser->id }}"><span class="glyphicon glyphicon-remove"></span></a>  
                                 </td>
+                                <td>
+                                    <a href="#" class="btn-send-mail" data-name='{{ $ser->title }}' data-id="{{ $ser->id }}">Gửi mail</a>
+                                </td>
                     		</tr>
                     		@endforeach
                     	</tbody>
@@ -87,6 +91,7 @@
             <div class="col-md-8 col-md-offset-2">
                 @include('service/sub/extra', ['expand' => $expand])
                 @include('service/sub/upsert', ['service' => $service, 'categories' => $categories, 'suppliers' => $suppliers])
+                @include('service/sub/mail', ['expand' => $expand, 'templates' => $templates])                
             </div>
         </div>
     </div>

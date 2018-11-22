@@ -25,7 +25,7 @@
                                     <th>Tiêu đề</th>
                                     <th>Trạng thái</th>
                                     <th>Loại tự động thông báo hết hạn</th>
-                                    <th></th>
+                                    <!-- <th></th> -->
                                     <th></th>
                                     <th></th>
                                 </tr>
@@ -49,9 +49,9 @@
                                         <span class = "label label-info">Dành cho dịch vụ</a>
                                         @endif
                                     </td>
-                                    <td>
+                                    <!-- <td>
                                     <a class="btn-auto-mail" href="/quan-ly-mau-email?expand=open&id={{ $temp->id }}&auto=1">Sửa auto email</a>    
-                                    </td>
+                                    </td> -->
                                     <td>
                                         <a href="/quan-ly-mau-email?expand=open&id={{ $temp->id }}"><span class="glyphicon glyphicon-pencil"></span></a>
                                                 
@@ -123,23 +123,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Lưu lại
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="panel panel-default panel-bottom-bar panel-auto-mail {{ $auto && $auto == 1 ? '' : 'hide' }}">
-                    <div class="panel-heading">Cài đặt auto mail</div>
-                    <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/template/auto') }}">
-                            {{ csrf_field() }}
-                            <input type="hidden" name="auto_id" id="auto_id" value="{{ $template ? $template->id : '' }}">
-                            
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Mẫu email tự động thông báo hết hạn</label>
                                 <div class="col-md-6">
