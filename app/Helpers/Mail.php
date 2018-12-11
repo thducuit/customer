@@ -95,12 +95,14 @@ class Mail {
         
         $datecreated=date("d/m/Y",strtotime($service->datecreated));
         $dateexpired=date("d/m/Y",strtotime($service->dateexpired));
-        $category = $service->supplier ? $service->supplier->name : '';
+        $supplier = $service->supplier ? $service->supplier->name : '';
+        $category = $service->category ? $service->category->title : '';
         $email = $service->email;
         $project = $service->title;
 
         $subject = $template->title;
         $subject = str_replace("{category}", strtoupper($category), $subject);
+        $subject = str_replace("{supplier}", strtoupper($supplier), $subject);
         $subject = str_replace("{datecreated}",$datecreated, $subject);
         $subject = str_replace("{dateexpired}",$dateexpired, $subject);
         $subject = str_replace("{project}",$project, $subject);
@@ -112,6 +114,7 @@ class Mail {
         $content = str_replace("{datecreated}", $datecreated, $content);
         $content = str_replace("{dateexpired}", $dateexpired, $content);
         $content = str_replace("{category}", strtoupper($category), $content);
+        $content = str_replace("{supplier}", strtoupper($supplier), $content);
         $content = str_replace("{project}", $project, $content);
         $content = str_replace("{price}", $price_vat, $content);
         $content = str_replace("{email}", $email, $content);
